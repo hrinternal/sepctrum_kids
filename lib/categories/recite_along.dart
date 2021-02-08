@@ -17,7 +17,7 @@ Future<List<AlphabetEntity>> _fetchAlphabets() async {
 
 class ReciteAlongScreen extends StatefulWidget {
   static const routeName = '/recite-along';
-
+// just editing for test.. remove when you see
   final String title;
   final Color primaryColor;
   final Color secondaryColor;
