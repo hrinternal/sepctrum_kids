@@ -142,6 +142,20 @@ class _ClickScreenState extends State<ClickScreen> {
                           border: Border.all(color: Colors.black54)
                       ),
                       child: Center(
+                        child: Text('W',
+                            style: TextStyle(color: Color(0xffD9583B),
+                                fontWeight: FontWeight.w500, fontSize: 35)),
+                      ),
+                    ),
+
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(2.0),
+                          border: Border.all(color: Colors.black54)
+                      ),
+                      child: Center(
                         child: Text('O',
                             style: TextStyle(color: Color(0xffD9583B),
                                 fontWeight: FontWeight.w500, fontSize: 35)),

@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:spectrum_kids/utility/constant.dart';
-class TileCard extends StatelessWidget {
+class FruitTileCard extends StatelessWidget {
   final bool isActive;
-  final String title;
+  final String image;
+  final String fruitName;
   final Color textColor;
   final Color backgroundColor;
   final double fontSizeBase;
   final double fontSizeActive;
   final VoidCallback onTap;
 
-  const TileCard({
+  const FruitTileCard({
     Key key,
     this.isActive = false,
-    this.title,
+    this.image,
+    this.fruitName,
     this.textColor = kTitleTextColor,
     this.backgroundColor = Colors.white,
-    this.fontSizeBase = 130,
-    this.fontSizeActive = 180,
-    this.onTap,
+    this.fontSizeBase = 25,
+    this.fontSizeActive = 30,
+    this.onTap, title,
   }) : super(key: key);
 
   @override
@@ -49,9 +51,13 @@ class TileCard extends StatelessWidget {
                   : TextStyle(fontSize: fontSizeBase),
               duration: const Duration(milliseconds: 400),
               curve: Curves.bounceOut,
-              child: Text(title,  softWrap: false,
-                style: TextStyle(color: textColor, fontFamily: 'CabinSketch', fontWeight: FontWeight.w700,
-                ),
+              child: Column(
+                children: [
+                  Image.asset(image, fit: BoxFit.cover),
+
+                  Text(fruitName, softWrap: false,
+                    style: TextStyle(color: textColor, fontFamily: 'CabinSketch',)),
+                ],
               ),
             ),
           ),

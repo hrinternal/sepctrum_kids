@@ -1,0 +1,56 @@
+[
+  {
+    "word": "KEY",
+    "wordGapp": "K_Y",
+    "isEnabled": "true",
+    "isAnswered": "false",
+    "option1": "A",
+    "option2": "E",
+    "answer": "E"
+  },
+  {
+    "word": "JUG",
+    "wordGapp": "J_G",
+    "isEnabled": "true",
+    "isAnswered": "false",
+    "option1": "U",
+    "option2": "N",
+    "answer": "U"
+  },
+  {
+    "word": "BALL",
+    "wordGapp": "B_LL",
+    "isEnabled": "true",
+    "isAnswered": "false",
+    "option1": "A",
+    "option2": "O",
+    "answer": "A"
+  },
+  {
+    "word": "BOX",
+    "wordGapp": "B_X",
+    "isEnabled": "true",
+    "isAnswered": "false",
+    "option1": "O",
+    "option2": "A",
+    "answer": "O"
+  },
+  {
+    "word": "CUP",
+    "wordGapp": "C_P",
+    "isEnabled": "true",
+    "isAnswered": "false",
+    "option1": "N",
+    "option2": "U",
+    "answer": "U"
+  },
+  {
+    "word": "CAR",
+    "wordGap": "C_R",
+    "isEnabled": "true",
+    "isAnswered": "false",
+    "option1": "C",
+    "option2": "A",
+    "answer": "A"
+  }
+]

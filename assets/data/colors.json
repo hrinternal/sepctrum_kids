@@ -48,10 +48,5 @@
     "code": "0xccffffff",
     "name": "White",
     "audio": "assets/audio/white.mp3"
-  },
-  {
-    "code": "0xccffffff",
-    "name": "Cream",
-    "audio": "assets/audio/cream.mp3"
   }
 ]

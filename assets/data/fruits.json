@@ -1,0 +1,62 @@
+[
+  {
+    "image": "assets/fruits/fruit_apple.png",
+    "audio": "assets/audio/kid-a.mp3",
+    "text": "Apple"
+  },
+  {
+    "image": "assets/fruits/fruit_banana.png",
+    "audio": "assets/audio/kid-b.mp3",
+    "text": "Banana"
+  },
+  {
+    "image": "assets/fruits/fruit_orange.png",
+    "text": "Orange",
+    "audio": "assets/audio/kid-c.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_pineapple.png",
+    "text": "Pineapple",
+    "audio": "assets/audio/kid-d.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_watermelon.jpg",
+    "text": "Watermelon",
+    "audio": "assets/audio/kid-e.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_apple.png",
+    "text": "A for Apple",
+    "audio": "assets/audio/kid-f.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_orange.png",
+    "text": "A for Apple",
+    "audio": "assets/audio/kid-g.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_pineapple.png",
+    "text": "A for Apple",
+    "audio": "assets/audio/kid-h.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_apple.png",
+    "text": "A for Apple",
+    "audio": "assets/audio/kid-e.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_banana.png",
+    "text": "A for Apple",
+    "audio": "assets/audio/kid-f.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_orange.png",
+    "text": "A for Apple",
+    "audio": "assets/audio/kid-g.mp3"
+  },
+  {
+    "image": "assets/fruits/fruit_pineapple.png",
+    "text": "A for Apple",
+    "audio": "assets/audio/kid-h.mp3"
+  }
+]

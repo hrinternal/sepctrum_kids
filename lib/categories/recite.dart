@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:spectrum_kids/categories/recite_along.dart';
 import 'package:spectrum_kids/utility/color_box.dart';
-
+import 'package:spectrum_kids/categories/drag_and_drop.dart';
 
 class ReciteScreen extends StatefulWidget {
   static const routeName = '/recite';
@@ -64,6 +64,15 @@ class _ReciteScreenState extends State<ReciteScreen> {
 
                   Text('Nigeria is my country, \nA place of joy\nA place of pleasure\nWhere daddy was born,\nWhere mummy was born,\nNo matter what happens,\nNigeria remains my country.',
                   style: TextStyle(fontWeight: FontWeight.w400, fontSize: 22),),
+
+                  SizedBox(height: 50),
+
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> DragDropScreen()));
+                    },
+                      child: Image.asset("assets/images/play_button.png")
+                  ),
 
                   Spacer(),
 

@@ -1,14 +1,14 @@
-class AlphabetEntity {
+class AlphabetsEntity {
   String text;
   String audio;
 
-  AlphabetEntity({
+  AlphabetsEntity({
     this.text,
     this.audio,
   });
 
-  factory AlphabetEntity.fromJson(Map<String, dynamic> parsedJson) {
-    return AlphabetEntity(
+  factory AlphabetsEntity.fromJson(Map<String, dynamic> parsedJson) {
+    return AlphabetsEntity(
       text: parsedJson['text'],
       audio: parsedJson['audio'],
     );

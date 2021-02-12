@@ -1,4 +1,3 @@
-import 'dart:isolate';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -15,11 +14,16 @@ class _DragDropScreenState extends State<DragDropScreen> {
 
   /// Choices for game
   final Map choices = {
-    '🍏': 'APPLE',
+    'assets/fruits/fruit_apple.png': 'APPLE',
+    'assets/fruits/fruit_banana.png': 'BANANA',
+    'assets/fruits/fruit_pineapple.png': 'PINEAPPLE',
+    'assets/fruits/fruit_orange.png': 'ORANGE',
+
+    // '🍏': 'APPLE',
     // '🍋': 'Banana',
-    '🍇': 'GRAPE',
-    '🥥': 'COCONUT',
-    '🥕': 'CARROT'
+    // '🍇': 'GRAPE',
+    // '🥥': 'COCONUT',
+    // '🥕': 'CARROT'
   };
 
   // Random seed to shuffle order of items.
@@ -43,6 +47,8 @@ class _DragDropScreenState extends State<DragDropScreen> {
                     style: TextStyle(fontSize: 22, color: Colors.grey[800]),
                     textAlign: TextAlign.center)),
 
+            SizedBox(height: 30),
+
             //for fruits
             Expanded(
               flex: 2,
@@ -55,9 +61,9 @@ class _DragDropScreenState extends State<DragDropScreen> {
                   children: choices.keys.map((emoji) {
                     return Draggable<String>(
                       data: emoji,
-                      child: Emoji(emoji: score[emoji] == true ? '✅' : emoji),
+                      child: Emoji(emoji: score[emoji] == true ? 'assets/images/correct_mark.png' : emoji),
                       feedback: Emoji(emoji: emoji),
-                      childWhenDragging: Emoji(emoji: '🌱'),
+                      childWhenDragging: Emoji(emoji: ''),
                     );
                   }).toList()),
             ),
@@ -113,19 +119,14 @@ class _DragDropScreenState extends State<DragDropScreen> {
             // width: 50,
           );
         } else {
-          // return Container(color: choices[emoji], height: 80, width: 200,
           return Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(0.0),
                 border: Border.all(color: Colors.black54)
             ),
             child: Center(
-                child: Text(
-              choices[emoji],
-              style: TextStyle(
-                  color: Color(0xffD9583B),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 25),
+                child: Text(choices[emoji],
+              style: TextStyle(color: Color(0xffD9583B), fontWeight: FontWeight.w500, fontSize: 25),
             )),
           );
         }
@@ -154,9 +155,8 @@ class Emoji extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         // padding: EdgeInsets.all(10),
-        child: Text(
-          emoji,
-          style: TextStyle(color: Colors.black, fontSize: 100),
+        child: Image.asset(emoji,
+          // style: TextStyle(color: Colors.black, fontSize: 100),
         ),
       ),
     );

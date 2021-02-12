@@ -5,8 +5,12 @@ import 'package:spectrum_kids/categories/drag_and_drop.dart';
 import 'package:spectrum_kids/categories/match.dart';
 import 'package:spectrum_kids/categories/recite.dart';
 import 'package:spectrum_kids/categories/recite_along.dart';
+import 'package:spectrum_kids/categories/recite_fruits.dart';
+import 'package:spectrum_kids/screens/audio_player.dart';
 import 'package:spectrum_kids/utility/color_box.dart';
 import 'package:spectrum_kids/screens/login.dart';
+import 'package:spectrum_kids/categories/new_click.dart';
+import 'package:spectrum_kids/categories/recite_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -24,10 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchTextController = TextEditingController();
   int selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget> [
-    ClickScreen(),
+    MatchScreen(),
     DragDropScreen(),
     ReciteAlongScreen(),
-    ReciteScreen(),
+    ColorsScreen(),
   ];
 
   @override

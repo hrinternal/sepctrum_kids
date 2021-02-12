@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:spectrum_kids/utility/color_box.dart';
 
 class MatchScreen extends StatefulWidget {
   static const routeName = '/match';
@@ -9,39 +10,35 @@ class MatchScreen extends StatefulWidget {
 }
 
 class _MatchScreenState extends State<MatchScreen> {
+  /// Map to keep track of score
   final Map<String, bool> score = {};
 
   /// Choices for game
   final Map choices = {
-    '🍏': 'HOE',
-    '🍋': 'CUTLASS',
-    '🍅': 'BOARD',
-    '🍇': 'SHOE',
-    // '🥥': Colors.brown,
-    // '🥕': Colors.orange
+    '🍏': Colors.green,
+    '🍋': Colors.yellow,
+    '🍅': Colors.red,
+    '🍇': Colors.purple,
+    '🥥': Colors.brown,
+    '🥕': Colors.orange
   };
 
   // Random seed to shuffle order of items.
   int seed = 0;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title:  Center(
-              child: Text('Match each picture with the name of the\n object in it.',
-                  style: TextStyle(fontSize: 22, color: Colors.grey[800]), textAlign: TextAlign.center)
-          ),
-          backgroundColor: Colors.white38,
+        backgroundColor: Colors.white24,
+        // leading: Container(),
+        title: Center(
+          child: Text('MATCH THE FRUITS TO\nTHEIR CORRECT COLORS', textAlign: TextAlign.center,
+            style: TextStyle(color: ColorBox.primaryColor, fontWeight: FontWeight.w600, fontSize: 22),),
+        ),
+        centerTitle: false,
         elevation: 0,
       ),
-
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -53,7 +50,7 @@ class _MatchScreenState extends State<MatchScreen> {
                   data: emoji,
                   child: Emoji(emoji: score[emoji] == true ? '✅' : emoji),
                   feedback: Emoji(emoji: emoji),
-                  childWhenDragging: Emoji(emoji: '🌱'),
+                  childWhenDragging: Emoji(emoji: ''),
                 );
               }).toList()
           ),
@@ -73,18 +70,13 @@ class _MatchScreenState extends State<MatchScreen> {
         if (score[emoji] == true) {
           return Container(
             color: Colors.white,
-            child: Text('Correct!'),
+            child: Text('Correct!', style: TextStyle(fontSize: 23 , letterSpacing: 3, fontWeight: FontWeight.bold)),
             alignment: Alignment.center,
             height: 80,
             width: 200,
           );
         } else {
-          return Container(
-               height: 80, width: 200,
-            child: Text( choices[emoji],
-              style: TextStyle(color: Color(0xffD9583B), fontWeight: FontWeight.w500, fontSize: 25)),
-
-        );
+          return Container(color: choices[emoji], height: 80, width: 200);
         }
       },
       onWillAccept: (data) => data == emoji,
@@ -118,3 +110,5 @@ class Emoji extends StatelessWidget {
     );
   }
 }
+
+// AudioCache plyr = AudioCache();

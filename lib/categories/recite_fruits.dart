@@ -4,36 +4,34 @@ import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_sound/flutter_sound_player.dart';
-import 'package:spectrum_kids/model/alphabet_model.dart';
-import 'package:spectrum_kids/widgets/helper.dart';
-import 'package:spectrum_kids/widgets/tile_card.dart';
+import 'package:spectrum_kids/model/fruit_model.dart';
+import 'package:spectrum_kids/widgets/fruit_tile_card.dart';
 
-Future<List<AlphabetsEntity>> _fetchAlphabets() async {
-  String jsonString = await rootBundle.loadString('assets/data/alphabets.json');
+Future<List<FruitsEntity>> _fetchFruits() async {
+  String jsonString = await rootBundle.loadString('assets/data/fruits.json');
   final jsonParsed =  json.decode(jsonString);
 
-  return jsonParsed.map<AlphabetsEntity>((json) => new AlphabetsEntity.fromJson(json)).toList();
+  return jsonParsed.map<FruitsEntity>((json) => new FruitsEntity.fromJson(json)).toList();
 }
 
-class ReciteAlongScreen extends StatefulWidget {
-  static const routeName = '/recite-along';
-// just editing for test.. remove when you see
+class ReciteFruitsScreen extends StatefulWidget {
+  static const routeName = '/recite-fruits';
   final String title;
-  final Color primaryColor;
-  final Color secondaryColor;
+  // final Color primaryColor;
+  // final Color secondaryColor;
 
-  ReciteAlongScreen({
+  ReciteFruitsScreen({
     this.title,
-    this.primaryColor,
-    this.secondaryColor,
+    // this.primaryColor,
+    // this.secondaryColor,
   });
 
   @override
-  _ReciteAlongScreenState createState() => _ReciteAlongScreenState();
+  _ReciteFruitsScreenState createState() => _ReciteFruitsScreenState();
 }
 
-class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
-  Future<List<AlphabetsEntity>> _alphabetsFuture;
+class _ReciteFruitsScreenState extends State<ReciteFruitsScreen> {
+  Future<List<FruitsEntity>> _fruitsFuture;
   FlutterSoundPlayer _soundPlayer;
   int _selectedIndex;
 
@@ -41,7 +39,7 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
   void initState() {
     super.initState();
 
-    _alphabetsFuture = _fetchAlphabets();
+    _fruitsFuture = _fetchFruits();
     _soundPlayer = new FlutterSoundPlayer();
   }
 
@@ -57,12 +55,12 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 40.0),
-            child: Text('Tap the alphabets and recite.', style: TextStyle(fontSize: 25, color:  Colors.grey[800]),),
+            child: Text('Tap the fruits and recite.', style: TextStyle(fontSize: 25, color:  Colors.grey[800]),),
           ),
 
           Expanded(
             child: FutureBuilder(
-              future: _alphabetsFuture,
+              future: _fruitsFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return MediaQuery.removePadding(
@@ -79,10 +77,11 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
                           padding: index % 2 == 0
                               ? const EdgeInsets.only(bottom: 20, left: 20)
                               : const EdgeInsets.only(bottom: 20, right: 20),
-                          child: TileCard(
+                          child: FruitTileCard(
                             isActive: _selectedIndex == index,
-                            title: snapshot.data[index].text,
-                            textColor: getIndexColor(index),
+                            image: snapshot.data[index].image,
+                            fruitName: snapshot.data[index].text,
+                            // textColor: getIndexColor(index),
                             onTap: () {
                               setState(() {
                                 _selectedIndex = index;

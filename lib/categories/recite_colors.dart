@@ -1,39 +1,41 @@
 import 'dart:convert';
-import 'dart:typed_data';
 import 'dart:async' show Future;
+import 'dart:typed_data';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_sound/flutter_sound_player.dart';
-import 'package:spectrum_kids/model/alphabet_model.dart';
-import 'package:spectrum_kids/widgets/helper.dart';
+import 'package:spectrum_kids/widgets/page_header.dart';
 import 'package:spectrum_kids/widgets/tile_card.dart';
+import 'package:spectrum_kids/model/color_model.dart';
+import 'package:spectrum_kids/utility/constant.dart';
 
-Future<List<AlphabetsEntity>> _fetchAlphabets() async {
-  String jsonString = await rootBundle.loadString('assets/data/alphabets.json');
-  final jsonParsed =  json.decode(jsonString);
+Future<List<ColorEntity>> _fetchColors() async {
+  String jsonString = await rootBundle.loadString('assets/data/colors.json');
+  final jsonParsed = json.decode(jsonString);
 
-  return jsonParsed.map<AlphabetsEntity>((json) => new AlphabetsEntity.fromJson(json)).toList();
+  return jsonParsed
+      .map<ColorEntity>((json) => new ColorEntity.fromJson(json))
+      .toList();
 }
 
-class ReciteAlongScreen extends StatefulWidget {
-  static const routeName = '/recite-along';
-// just editing for test.. remove when you see
+class ColorsScreen extends StatefulWidget {
   final String title;
   final Color primaryColor;
   final Color secondaryColor;
 
-  ReciteAlongScreen({
+  ColorsScreen({
     this.title,
     this.primaryColor,
     this.secondaryColor,
   });
 
   @override
-  _ReciteAlongScreenState createState() => _ReciteAlongScreenState();
+  _ColorsScreenState createState() => _ColorsScreenState();
 }
 
-class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
-  Future<List<AlphabetsEntity>> _alphabetsFuture;
+class _ColorsScreenState extends State<ColorsScreen> {
+  Future<List<ColorEntity>> _colorsFuture;
   FlutterSoundPlayer _soundPlayer;
   int _selectedIndex;
 
@@ -41,7 +43,7 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
   void initState() {
     super.initState();
 
-    _alphabetsFuture = _fetchAlphabets();
+    _colorsFuture = _fetchColors();
     _soundPlayer = new FlutterSoundPlayer();
   }
 
@@ -53,16 +55,17 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Scaffold(
+      body: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 40.0),
-            child: Text('Tap the alphabets and recite.', style: TextStyle(fontSize: 25, color:  Colors.grey[800]),),
+            child: Text('Tap the colors and recite.', style: TextStyle(fontSize: 25, color:  Colors.grey[800]),),
           ),
 
           Expanded(
             child: FutureBuilder(
-              future: _alphabetsFuture,
+              future: _colorsFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return MediaQuery.removePadding(
@@ -81,12 +84,19 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
                               : const EdgeInsets.only(bottom: 20, right: 20),
                           child: TileCard(
                             isActive: _selectedIndex == index,
-                            title: snapshot.data[index].text,
-                            textColor: getIndexColor(index),
+                            title: snapshot.data[index].name,
+                            textColor: snapshot.data[index].name == 'White'
+                                ? kTitleTextColor
+                                : Colors.white,
+                            backgroundColor:
+                                Color(int.parse(snapshot.data[index].code)),
+                            fontSizeBase: 30,
+                            fontSizeActive: 40,
                             onTap: () {
                               setState(() {
                                 _selectedIndex = index;
                               });
+
                               _playAudio(snapshot.data[index].audio);
                             },
                           ),
@@ -103,7 +113,8 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
             ),
           ),
         ],
-      );
+      ),
+    );
   }
 
   @override

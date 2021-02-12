@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0-nullsafety.1"
+  audioplayers:
+    dependency: "direct main"
+    description:
+      name: audioplayers
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.14.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -286,13 +293,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.2"
-  flutter_ffmpeg:
-    dependency: transitive
-    description:
-      name: flutter_ffmpeg
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.1"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -320,7 +320,7 @@ packages:
       name: flutter_sound
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.10"
+    version: "4.0.6"
   flutter_svg:
     dependency: "direct main"
     description:

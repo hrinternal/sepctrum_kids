@@ -55,7 +55,8 @@ dependencies:
   salomon_bottom_bar: ^2.0.0
   shared_preferences: ^0.5.12+4
   webview_flutter_plus: ^0.1.1+9
-  flutter_sound: ^3.1.6
+  flutter_sound: ^4.0.0
+  audioplayers: ^0.14.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -105,6 +106,7 @@ flutter:
     - assets/
     - assets/audio/
     - assets/data/
+    - assets/music/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
