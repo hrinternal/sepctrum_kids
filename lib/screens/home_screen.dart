@@ -9,7 +9,7 @@ import 'package:spectrum_kids/categories/recite_fruits.dart';
 import 'package:spectrum_kids/screens/audio_player.dart';
 import 'package:spectrum_kids/utility/color_box.dart';
 import 'package:spectrum_kids/screens/login.dart';
-import 'package:spectrum_kids/categories/new_click.dart';
+import 'package:spectrum_kids/categories/another_click.dart';
 import 'package:spectrum_kids/categories/recite_colors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,8 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchTextController = TextEditingController();
   int selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget> [
+    AnotherClickScreen(),
     MatchScreen(),
-    DragDropScreen(),
     ReciteAlongScreen(),
     ColorsScreen(),
   ];

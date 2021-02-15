@@ -1,7 +1,7 @@
 [
   {
     "word": "KEY",
-    "wordGapp": "K_Y",
+    "wordGap": "K_Y",
     "isEnabled": "true",
     "isAnswered": "false",
     "option1": "A",
@@ -10,7 +10,7 @@
   },
   {
     "word": "JUG",
-    "wordGapp": "J_G",
+    "wordGap": "J_G",
     "isEnabled": "true",
     "isAnswered": "false",
     "option1": "U",
@@ -19,7 +19,7 @@
   },
   {
     "word": "BALL",
-    "wordGapp": "B_LL",
+    "wordGap": "B_LL",
     "isEnabled": "true",
     "isAnswered": "false",
     "option1": "A",
@@ -28,7 +28,7 @@
   },
   {
     "word": "BOX",
-    "wordGapp": "B_X",
+    "wordGap": "B_X",
     "isEnabled": "true",
     "isAnswered": "false",
     "option1": "O",
@@ -37,7 +37,7 @@
   },
   {
     "word": "CUP",
-    "wordGapp": "C_P",
+    "wordGap": "C_P",
     "isEnabled": "true",
     "isAnswered": "false",
     "option1": "N",

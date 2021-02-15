@@ -7,11 +7,11 @@ import 'package:flutter_sound/flutter_sound_player.dart';
 import 'package:spectrum_kids/widgets/gap_tile_card.dart';
 import 'package:spectrum_kids/model/gaps_model.dart';
 
-Future<List<GapsEntity>> _fetchGaps() async {
+Future<List<GapsModel>> _fetchGaps() async {
   String jsonString = await rootBundle.loadString('assets/data/gaps.json');
   final jsonParsed =  json.decode(jsonString);
 
-  return jsonParsed.map<GapsEntity>((json) => new GapsEntity.fromJson(json)).toList();
+  return jsonParsed.map<GapsModel>((json) => new GapsModel.fromJson(json)).toList();
 }
 
 class NewClickScreen extends StatefulWidget {
@@ -25,11 +25,10 @@ class NewClickScreen extends StatefulWidget {
 }
 
 class _NewClickScreenState extends State<NewClickScreen> {
-  Future<List<GapsEntity>> _gapsFuture;
+  Future<List<GapsModel>> _gapsFuture;
   FlutterSoundPlayer _soundPlayer;
   int _selectedIndex;
-  // GapTileCard gapTileCard = GapTileCard();
-  List<GapsEntity> gapsEntity = List<GapsEntity>();
+
 
   @override
   void initState() {

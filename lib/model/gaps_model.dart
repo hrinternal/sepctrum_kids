@@ -1,15 +1,15 @@
-class GapsEntity {
+class GapsModel {
   String word;
-  String wordGapp;
+  String wordGap;
   String option1;
   String option2;
   String answer;
   bool isEnabled;
   bool isAnswered;
 
-  GapsEntity({
+  GapsModel({
     this.word,
-    this.wordGapp,
+    this.wordGap,
     this.option1,
     this.option2,
     this.answer,
@@ -17,15 +17,13 @@ class GapsEntity {
     this.isEnabled
   });
 
-  factory GapsEntity.fromJson(Map<String, dynamic> parsedJson) {
-    return GapsEntity(
+  factory GapsModel.fromJson(Map<String, dynamic> parsedJson) {
+    return GapsModel(
       word: parsedJson['word'],
-      wordGapp: parsedJson['wordGapp'],
+      wordGap: parsedJson['wordGap'],
       option1: parsedJson['option1'],
       option2: parsedJson['option2'],
       answer: parsedJson['answer']
-
-
     );
   }
 }
