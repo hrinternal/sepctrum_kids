@@ -6,25 +6,29 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_sound/flutter_sound_player.dart';
 import 'package:spectrum_kids/model/gaps_model.dart';
 import 'package:spectrum_kids/widgets/custom_dialog.dart';
+import 'package:spectrum_kids/model/fill_alphabets_model.dart';
 
-Future<List<GapsModel>> _fetchGaps() async {
-  String jsonString = await rootBundle.loadString('assets/data/gaps.json');
+Future<List<FillAlphabetsModel>> _fetchAlphabets() async {
+  String jsonString = await rootBundle.loadString('assets/data/fill_alphabets.json');
   final jsonParsed =  json.decode(jsonString);
-  return jsonParsed.map<GapsModel>((json) => new GapsModel.fromJson(json)).toList();
+  return jsonParsed.map<FillAlphabetsModel>((json) => new FillAlphabetsModel.fromJson(json)).toList();
 }
 
-class ClickScreen extends StatefulWidget {
+class FillAlphabetsScreen extends StatefulWidget {
   // static const routeName = '/recite-fruits';
-  final String title;
+  // final String title;
+  //
+  // FillAlphabetsScreen({this.title,});
+  var alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+  'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-  ClickScreen({this.title,});
 
   @override
-  _ClickScreenState createState() => _ClickScreenState();
+  _FillAlphabetsScreenState createState() => _FillAlphabetsScreenState();
 }
 
-class _ClickScreenState extends State<ClickScreen> {
-  Future<List<GapsModel>> _gapsFuture;
+class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
+  Future<List<FillAlphabetsModel>> fillAlphabetsModel;
   FlutterSoundPlayer _soundPlayer;
   int _selectedIndex;
 
@@ -32,7 +36,7 @@ class _ClickScreenState extends State<ClickScreen> {
   void initState() {
     super.initState();
 
-    _gapsFuture = _fetchGaps();
+    fillAlphabetsModel = _fetchAlphabets();
     _soundPlayer = new FlutterSoundPlayer();
   }
 
@@ -53,13 +57,17 @@ class _ClickScreenState extends State<ClickScreen> {
 
         Expanded(
           child: FutureBuilder(
-            future: _gapsFuture,
+            future: fillAlphabetsModel,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return MediaQuery.removePadding(
                   context: context,
                   removeTop: true,
-                  child: ListView.builder(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: 5.0,
+                    ),
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
@@ -68,7 +76,7 @@ class _ClickScreenState extends State<ClickScreen> {
                           padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 30.0),
                           child: Row(
                             children: [
-                              Text(snapshot.data[index].wordGap, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, letterSpacing: 8)),
+                              Text(snapshot.data[index].letter, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
                               Spacer(),
 
                               InkWell(
@@ -83,8 +91,8 @@ class _ClickScreenState extends State<ClickScreen> {
                                     Scaffold.of(context).showSnackBar(
                                         SnackBar(backgroundColor: Colors.green.withOpacity(1.0),
                                           content: Text("INCORRECT, TRY AGAIN",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, letterSpacing: 3)),
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, letterSpacing: 3)),
                                         )
                                     );
                                   }
@@ -145,13 +153,13 @@ class _ClickScreenState extends State<ClickScreen> {
           ),
         ),
 
-           FlatButton(
-             child: Text('NEXT'),
-             onPressed: (){
-              showDialog(context: context,  builder: (context) => CustomBottomDialog()
-                 );
-              },
-           ),
+        FlatButton(
+          child: Text('NEXT'),
+          onPressed: (){
+            showDialog(context: context,  builder: (context) => CustomBottomDialog()
+            );
+          },
+        ),
       ],
     );
   }

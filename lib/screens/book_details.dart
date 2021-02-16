@@ -1,7 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:spectrum_kids/categories/click.dart';
-import 'package:spectrum_kids/categories/recite.dart';
 
 class BookDetails extends StatefulWidget {
   static const routeName = '/book-details';
@@ -91,7 +89,6 @@ class _BookDetailsState extends State<BookDetails> {
 
               InkWell(
                 onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ClickScreen()));
 
                 },
                 child: Container(
