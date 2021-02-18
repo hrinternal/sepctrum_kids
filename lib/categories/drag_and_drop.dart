@@ -43,9 +43,9 @@ class _DragDropScreenState extends State<DragDropScreen> {
           children: [
             //for instruction
             Center(
-                child: Text('Drag the fruits to their correct name.',
-                    style: TextStyle(fontSize: 22, color: Colors.grey[800]),
-                    textAlign: TextAlign.center)),
+                child: Text('Drag the fruits to their correct name.', style: TextStyle(fontSize: 22, color: Colors.grey[800]),
+                    textAlign: TextAlign.center)
+            ),
 
             SizedBox(height: 30),
 

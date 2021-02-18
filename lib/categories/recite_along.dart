@@ -17,7 +17,7 @@ Future<List<AlphabetsEntity>> _fetchAlphabets() async {
 
 class ReciteAlongScreen extends StatefulWidget {
   static const routeName = '/recite-along';
-// just editing for test.. remove when you see
+// just editing for test.. remove the comment when you see
   final String title;
   final Color primaryColor;
   final Color secondaryColor;
@@ -40,7 +40,6 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
   @override
   void initState() {
     super.initState();
-
     _alphabetsFuture = _fetchAlphabets();
     _soundPlayer = new FlutterSoundPlayer();
   }

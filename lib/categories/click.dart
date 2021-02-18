@@ -48,7 +48,9 @@ class _ClickScreenState extends State<ClickScreen> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 15.0),
-          child: Text('Fill in the gap with the appropriate answer.', style: TextStyle(fontSize: 25, color:  Colors.grey[800]),),
+          child: Center(child: Text('Fill in the gap with the correct answer.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 22, color:  Colors.grey[800]),)),
         ),
 
         Expanded(
@@ -95,7 +97,11 @@ class _ClickScreenState extends State<ClickScreen> {
                                       border: Border.all(width: 1),
                                     ),
                                     child: Center(
-                                        child: Text(snapshot.data[index].option1, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.redAccent)))
+                                      child: Text(snapshot.data[index].option1,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.redAccent),
+                                      ),
+                                    )
                                 ),
                               ),
 

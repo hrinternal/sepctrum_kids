@@ -15,13 +15,6 @@ Future<List<FillAlphabetsModel>> _fetchAlphabets() async {
 }
 
 class FillAlphabetsScreen extends StatefulWidget {
-  // static const routeName = '/recite-fruits';
-  // final String title;
-  //
-  // FillAlphabetsScreen({this.title,});
-  var alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
-  'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 
   @override
   _FillAlphabetsScreenState createState() => _FillAlphabetsScreenState();
@@ -51,10 +44,37 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 15.0),
-          child: Text('Fill in the gap with the appropriate answer.', style: TextStyle(fontSize: 25, color:  Colors.grey[800]),),
+          padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 15.0),
+          child: Text('Fill in the gap with the appropriate answer.', style: TextStyle(fontSize: 22, color:  Colors.grey[800]),
+          textAlign: TextAlign.center),
         ),
 
+        //for the options
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: 70,
+            decoration: BoxDecoration(border: Border.all(color: Colors.redAccent, width: 3)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Draggable(
+                      child: Text('S', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
+                      feedback: Text('S', style: TextStyle(fontSize: 40),),),
+                  Text('J', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),),
+                  Text('H', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),),
+                  Text('M', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),),
+                  Text('B', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),),
+                ],
+              )
+          ),
+        ),
+
+        SizedBox(height: 15),
+        Container(height: 2, color: Colors.grey,),
+        SizedBox(height: 15,),
+
+        //for the alphabets
         Expanded(
           child: FutureBuilder(
             future: fillAlphabetsModel,
@@ -72,73 +92,15 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
                         alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 30.0),
-                          child: Row(
-                            children: [
-                              Text(snapshot.data[index].letter, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
-                              Spacer(),
-
-                              InkWell(
-                                onTap: (){
-                                  if (snapshot.data[index].option1 == snapshot.data[index].answer){
-                                    setState(() {
-                                      snapshot.data[index].wordGap = snapshot.data[index].word;
-                                      snapshot.data[index].isAnswered = true;
-                                    });
-                                  }
-                                  else{
-                                    Scaffold.of(context).showSnackBar(
-                                        SnackBar(backgroundColor: Colors.green.withOpacity(1.0),
-                                          content: Text("INCORRECT, TRY AGAIN",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, letterSpacing: 3)),
-                                        )
-                                    );
-                                  }
-                                },
-                                child: Container(
-                                    height: 50, width: 50,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 1),
-                                    ),
-                                    child: Center(
-                                        child: Text(snapshot.data[index].option1, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.redAccent)))
-                                ),
-                              ),
-
-                              SizedBox(width: 30),
-
-                              InkWell(
-                                onTap: (){
-                                  if (snapshot.data[index].option2 == snapshot.data[index].answer){
-                                    setState(() {
-                                      snapshot.data[index].wordGap = snapshot.data[index].word;
-                                      snapshot.data[index].isAnswered = true;
-                                    });
-                                  }
-                                  else {
-                                    Scaffold.of(context).showSnackBar(
-                                        SnackBar(backgroundColor: Colors.green.withOpacity(1.0),
-                                          content: Text("INCORRECT, TRY AGAIN",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, letterSpacing: 3)),
-                                        )
-                                    );
-                                  }
-                                },
-                                child: Container(
-                                    height: 50, width: 50,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 1),
-                                    ),
-                                    child: Center(
-                                        child: Text(snapshot.data[index].option2, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.redAccent))
-                                    )
-                                ),
-                              ),
-                            ],
+                        child: Container(
+                          width: 70,
+                          height: 70,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.green.shade700)
                           ),
+                          child: Center(
+                              child: Text(snapshot.data[index].letter, style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center)),
                         ),
                       );
                     },
@@ -153,13 +115,7 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
           ),
         ),
 
-        FlatButton(
-          child: Text('NEXT'),
-          onPressed: (){
-            showDialog(context: context,  builder: (context) => CustomBottomDialog()
-            );
-          },
-        ),
+
       ],
     );
   }

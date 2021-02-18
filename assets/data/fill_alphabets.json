@@ -1,121 +1,80 @@
 [
   {
-    "letter": "A",
+    "letter": "A"
   },
   {
-    "letter": "A",
-  },  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},  {
-  "letter": "A",
-},
-  {
-    "word": "JUG",
-    "wordGap": "J_G",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "U",
-    "option2": "N",
-    "answer": "U"
+    "letter": ""
   },
   {
-    "word": "BALL",
-    "wordGap": "B_LL",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "A",
-    "option2": "O",
-    "answer": "A"
+  "letter": "C"
   },
   {
-    "word": "BOX",
-    "wordGap": "B_X",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "O",
-    "option2": "A",
-    "answer": "O"
+  "letter": "D"
   },
   {
-    "word": "CUP",
-    "wordGap": "C_P",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "N",
-    "option2": "U",
-    "answer": "U"
+  "letter": "E"
   },
   {
-    "word": "CAR",
-    "wordGap": "C_R",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "C",
-    "option2": "A",
-    "answer": "A"
+  "letter": "F"
   },
   {
-    "word": "GUM",
-    "wordGap": "G_M",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "U",
-    "option2": "N",
-    "answer": "U"
+  "letter": "G"
   },
   {
-    "word": "EGG",
-    "wordGap": "E_G",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "J",
-    "option2": "G",
-    "answer": "G"
+  "letter": ""
   },
   {
-    "word": "CAT",
-    "wordGap": "C_T",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "E",
-    "option2": "A",
-    "answer": "A"
+  "letter": "I"
   },
   {
-    "word": "HEN",
-    "wordGap": "H_N",
-    "isEnabled": "true",
-    "isAnswered": "false",
-    "option1": "R",
-    "option2": "E",
-    "answer": "E"
+  "letter": ""
+  },
+  {
+  "letter": "K"
+  },
+  {
+  "letter": "L"
+  },
+  {
+  "letter": ""
+  },
+  {
+  "letter": "N"
+  },
+  {
+  "letter": "O"
+  },
+  {
+  "letter": "P"
+  },
+  {
+  "letter": "Q"
+  },
+  {
+  "letter": "R"
+  },
+  {
+    "letter": ""
+  },
+  {
+    "letter": "T"
+  },
+  {
+    "letter": "U"
+  },
+  {
+    "letter": "V"
+  },
+  {
+    "letter": "W"
+  },
+  {
+    "letter": "X"
+  },
+  {
+    "letter": "Y"
+  },
+  {
+    "letter": "Z"
   }
 ]
