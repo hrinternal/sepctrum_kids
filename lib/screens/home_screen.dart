@@ -5,9 +5,9 @@ import 'package:spectrum_kids/categories/painting.dart';
 import 'package:spectrum_kids/categories/recite_along.dart';
 import 'package:spectrum_kids/utility/color_box.dart';
 import 'package:spectrum_kids/categories/click.dart';
-import 'package:spectrum_kids/categories/recite_colors.dart';
-import 'package:spectrum_kids/categories/fill_alphabets.dart';
-import 'package:spectrum_kids/categories/drag_and_drop.dart';
+// import 'package:spectrum_kids/categories/recite_colors.dart';
+// import 'package:spectrum_kids/categories/fill_alphabets.dart';
+// import 'package:spectrum_kids/categories/drag_and_drop.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget> [
     PaintingScreen(),
-    DragDropScreen(),
+    FillAlphabetsScreen(),
     ClickScreen(),
     ReciteAlongScreen(),
   ];
@@ -75,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.home),
+
             title: new Text('Home'),
           ),
           BottomNavigationBarItem(
