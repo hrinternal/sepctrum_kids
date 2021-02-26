@@ -4,8 +4,6 @@ import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_sound/flutter_sound_player.dart';
-import 'package:spectrum_kids/model/gaps_model.dart';
-import 'package:spectrum_kids/widgets/custom_dialog.dart';
 import 'package:spectrum_kids/model/fill_alphabets_model.dart';
 
 Future<List<FillAlphabetsModel>> _fetchAlphabets() async {
@@ -60,7 +58,8 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
                 children: [
                   Draggable(
                       child: Text('S', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
-                      feedback: Text('S', style: TextStyle(fontSize: 40),),),
+                      feedback: Text('S', style: TextStyle(fontSize: 40, color: Colors.blue, fontWeight: FontWeight.bold), ),
+                  ),
                   Text('J', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),),
                   Text('H', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),),
                   Text('M', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),),
@@ -114,8 +113,6 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
             },
           ),
         ),
-
-
       ],
     );
   }

@@ -2,9 +2,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:spectrum_kids/categories/fill_alphabets.dart';
 import 'package:spectrum_kids/categories/painting.dart';
-import 'package:spectrum_kids/categories/recite_along.dart';
+// import 'package:spectrum_kids/categories/recite_along.dart';
 import 'package:spectrum_kids/utility/color_box.dart';
 import 'package:spectrum_kids/categories/click.dart';
+import 'package:spectrum_kids/categories/tracing.dart';
+// import 'package:spectrum_kids/widgets/app_drawer.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // import 'package:spectrum_kids/categories/recite_colors.dart';
 // import 'package:spectrum_kids/categories/fill_alphabets.dart';
 // import 'package:spectrum_kids/categories/drag_and_drop.dart';
@@ -28,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     PaintingScreen(),
     FillAlphabetsScreen(),
     ClickScreen(),
-    ReciteAlongScreen(),
+    TracingScreen(),
   ];
 
   @override
@@ -50,8 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: ColorBox.primaryColor,
         leading: Container(),
-        title: Image.asset(
-          'assets/images/logo.png',
+        title: Image.asset('assets/images/logo.png',
           width: 20,
           color: Colors.white,
           height: 20,
@@ -64,6 +66,45 @@ class _HomeScreenState extends State<HomeScreen> {
         child: _widgetOptions.elementAt(selectedIndex),
       ),
 
+
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("Abhishek Mishra"),
+              accountEmail: Text("abhishekm977@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.orange,
+                child: Text(
+                  "A",
+                  style: TextStyle(fontSize: 40.0),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home), title: Text("Home"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings), title: Text("Settings"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.contacts), title: Text("Contact Us"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.redAccent,
@@ -74,21 +115,20 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-
+            icon: Icon(FluentIcons.home_24_regular),
             title: new Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: new Icon(Icons.mail),
+            icon: Icon(FluentIcons.arrow_download_24_regular),
             title: new Text('My Books'),
           ),
           BottomNavigationBarItem(
-            icon: new Icon(Icons.mail),
-            title: new Text('My Books'),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.mail),
+            icon: Icon(FluentIcons.note_24_regular),
             title: new Text('Book Details'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FluentIcons.games_24_regular),
+            title: new Text('Categories'),
           ),
           // BottomNavigationBarItem(
           //     icon: Icon(Icons.person, color: Colors.white12),
@@ -96,10 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
           // )
         ],
       ),
-
-
-
     );
   }
 
 }
+

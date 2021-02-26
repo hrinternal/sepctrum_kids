@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spectrum_kids/screens/home_screen.dart';
 import 'package:spectrum_kids/screens/splash_screen.dart';
 
 void main() {
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

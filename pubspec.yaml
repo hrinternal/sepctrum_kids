@@ -84,9 +84,11 @@ flutter_native_splash:
   # android
 
 flutter_icons:
-  android: "ic_launcher"
+  android: "logo"
+  #  android:  true
   ios: true
-  image_path: "assets/images/spectrum-logo.png"
+  image_path: "assets/images/logo.png"
+
 
 
 # For information on the generic Dart part of this file, see the
