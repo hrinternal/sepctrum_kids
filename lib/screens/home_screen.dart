@@ -12,6 +12,12 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // import 'package:spectrum_kids/categories/fill_alphabets.dart';
 // import 'package:spectrum_kids/categories/drag_and_drop.dart';
 
+import 'package:spectrum_kids/screens/library_screen.dart';
+import 'package:spectrum_kids/screens/my_books_screen.dart';
+import 'package:spectrum_kids/screens/second_my_books.dart';
+
+
+
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
 
@@ -28,9 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchTextController = TextEditingController();
   int selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget> [
-    PaintingScreen(),
-    FillAlphabetsScreen(),
-    ClickScreen(),
+    // PaintingScreen(),
+    // FillAlphabetsScreen(),
+    // ClickScreen(),
+    // TracingScreen(),
+    LibraryScreen(),
+    MyBooksScreen(),
+    SecondMyBooks(),
     TracingScreen(),
   ];
 
@@ -66,44 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: _widgetOptions.elementAt(selectedIndex),
       ),
 
-
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text("Abhishek Mishra"),
-              accountEmail: Text("abhishekm977@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.orange,
-                child: Text(
-                  "A",
-                  style: TextStyle(fontSize: 40.0),
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home), title: Text("Home"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings), title: Text("Settings"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.contacts), title: Text("Contact Us"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
 
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

@@ -1,7 +1,7 @@
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:spectrum_kids/bloc/authentication/authentication_event.dart';
 // import 'package:spectrum_kids/bloc/authentication/authentication_state.dart';
-// import 'package:sportixe_flu/repository/user_repository.dart';
+// import 'package:spectrum_kids/repository/user_repository.dart';
 //
 // import 'authentication.dart';
 //

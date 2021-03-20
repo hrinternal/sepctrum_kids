@@ -1,6 +1,6 @@
 // import 'package:equatable/equatable.dart';
 // import 'package:flutter/foundation.dart';
-// import 'package:sportixe_flu/model/user.dart';
+// import 'package:spectrum_kids/model/user.dart';
 //
 // abstract class AuthenticationEvent extends Equatable {
 //   const AuthenticationEvent();
