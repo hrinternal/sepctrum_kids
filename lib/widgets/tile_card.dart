@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:spectrum_kids/utility/constant.dart';
 class TileCard extends StatelessWidget {
   final bool isActive;
-  final String title;
+  final String? title;
   final Color textColor;
   final Color backgroundColor;
   final double fontSizeBase;
   final double fontSizeActive;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const TileCard({
-    Key key,
+    Key? key,
     this.isActive = false,
     this.title,
     this.textColor = kTitleTextColor,
@@ -49,7 +49,7 @@ class TileCard extends StatelessWidget {
                   : TextStyle(fontSize: fontSizeBase),
               duration: const Duration(milliseconds: 400),
               curve: Curves.bounceOut,
-              child: Text(title,  softWrap: false,
+              child: Text(title!,  softWrap: false,
                 style: TextStyle(color: textColor, fontFamily: 'CabinSketch', fontWeight: FontWeight.w700,
                 ),
               ),

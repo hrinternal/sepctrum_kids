@@ -85,9 +85,9 @@ class CarouselSlider extends StatelessWidget {
 }
 
 class CarouselCardWithButton extends StatelessWidget {
-  final String image;
-  final String title;
-  final bool check;
+  final String? image;
+  final String? title;
+  final bool? check;
 
   CarouselCardWithButton({this.image, this.title, this.check});
 
@@ -96,32 +96,38 @@ class CarouselCardWithButton extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Image.asset(image),
+        Image.asset(image!),
         SizedBox(height: 30.0),
         Text(
-          title,
+          title!,
           textAlign: TextAlign.center,
           style: TextStyles.h3style.copyWith(fontSize: 13),
         ),
         SizedBox(height: 50.0),
-        check
+        check!
             ? FlatButton(
-          onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GetStartedUI()));
-          },
-          child: Text('NEXT',
-            style: TextStyles.h3style.copyWith(fontSize: 13, color: ColorBox.primaryColor),
-          ),
-        )
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => GetStartedUI()));
+                },
+                child: Text(
+                  'NEXT',
+                  style: TextStyles.h3style
+                      .copyWith(fontSize: 13, color: ColorBox.primaryColor),
+                ),
+              )
             : FlatButton(
-          onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => GetStartedUI()));
-          },
-          child: Text('SKIP',
-            style: TextStyle(color: ColorBox.primaryColor,
-            ),
-          ),
-        ),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => GetStartedUI()));
+                },
+                child: Text(
+                  'SKIP',
+                  style: TextStyle(
+                    color: ColorBox.primaryColor,
+                  ),
+                ),
+              ),
       ],
     );
   }
@@ -142,26 +148,31 @@ class GetStartedUI extends StatelessWidget {
               height: 100,
             ),
           ),
-
-
           Image.asset(
             'assets/images/get_started.png',
             width: 250,
             height: 250,
           ),
-
-
           SizedBox(height: 30.0),
-          Text('Ready to learn?', textAlign: TextAlign.center,
-            style: TextStyle(color: ColorBox.primaryColor, fontSize: 20.0, fontWeight: FontWeight.bold),
+          Text(
+            'Ready to learn?',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: ColorBox.primaryColor,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 40.0),
           FlatButton(
             onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegistrationScreen()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => RegistrationScreen()));
             },
-            child:
-            Text('GET STARTED', style: TextStyles.h3style.copyWith(fontSize: 13, color: ColorBox.primaryColor)),
+            child: Text('GET STARTED',
+                style: TextStyles.h3style
+                    .copyWith(fontSize: 13, color: ColorBox.primaryColor)),
           )
         ],
       ),

@@ -1,10 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 class BookDetails extends StatefulWidget {
   static const routeName = '/book-details';
 
-  final List accessCodeBooks;
+  final List? accessCodeBooks;
+
   BookDetails({this.accessCodeBooks});
 
   @override
@@ -12,7 +13,6 @@ class BookDetails extends StatefulWidget {
 }
 
 class _BookDetailsState extends State<BookDetails> {
-
   @override
   void initState() {
     super.initState();
@@ -22,7 +22,6 @@ class _BookDetailsState extends State<BookDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-
       body: Padding(
           padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           child: Column(
@@ -31,94 +30,62 @@ class _BookDetailsState extends State<BookDetails> {
             children: [
               Center(
                   child: Container(
-                      child: Image.asset('assets/images/english3.png', width: 150, height: 200, fit: BoxFit.contain,))),
+                      child: Image.asset(
+                'assets/images/english3.png',
+                width: 150,
+                height: 200,
+                fit: BoxFit.contain,
+              ))),
               SizedBox(height: 50),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(70.0, 0.0, 70.0, 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Name', style: TextStyle(color: Colors.redAccent, fontSize: 20)),
-                    Spacer(),
-                    Text('Spectrum New Era 3', style: TextStyle(fontSize: 20),)
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(70.0, 0.0, 70.0, 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Class', style: TextStyle(color: Colors.redAccent, fontSize: 20)),
-                    SizedBox(width: 50),
-                    Text('Primary 3', style: TextStyle(fontSize: 20),)
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(70.0, 0.0, 0.0, 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Publisher', style: TextStyle(color: Colors.redAccent, fontSize: 20)),
-                    SizedBox(width: 20,),
-                    Text('Spectrum Book Publishers', style: TextStyle(fontSize: 20),)
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(70.0, 0.0, 0.0, 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Size', style: TextStyle(color: Colors.redAccent, fontSize: 20)),
-                    SizedBox(width: 60,),
-                    Text('100mb', style: TextStyle(fontSize: 20),)
-                  ],
-                ),
-              ),
+              ...details.map((item) => Padding(
+                    padding: const EdgeInsets.fromLTRB(25.0, 0.0, 15.0, 15.0),
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                            flex: 3,
+                            child: Text(item.tittle,
+                                style: TextStyle(
+                                    color: Colors.redAccent, fontSize: 20))),
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                              item.content,
+                              style: TextStyle(fontSize: 18),
+                            ))
+                      ],
+                    ),
+                  )),
               SizedBox(height: 20),
-
               InkWell(
-                onTap: (){
-
-                },
+                onTap: () {},
                 child: Container(
                   width: 130,
                   height: 40,
                   decoration: BoxDecoration(
                       color: Colors.redAccent,
-                      borderRadius: BorderRadius.circular(5.0)
-                  ),
+                      borderRadius: BorderRadius.circular(5.0)),
                   child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 0.0),
-                        child: Row(
-                          children: [
-                            Text('DOWNLOAD', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500,)),
-                            Spacer(),
-                            Icon(Icons.download_outlined, color: Colors.white, )
-                          ],
-                        ),
-                      ),
-                ),
+                    child:TextButton.icon(
+                        // onPressed:() => Ge,
+                        onPressed:() => Get.snackbar("", "Todo!!"),
+                        icon: Icon(Icons.download_rounded,color: Colors.white,),
+                        label: Text(
+                            "Download", style: TextStyle(color: Colors.white),)),
+                  ),
                 ),
               ),
             ],
-          )
-      ),
+          )),
     );
   }
 
-  Widget title({int index}) {
+  Widget title({int? index}) {
     switch (index) {
       case 0:
         return Row(
@@ -195,4 +162,18 @@ class _BookDetailsState extends State<BookDetails> {
         return Text('');
     }
   }
+}
+
+List<DetailsItem> details = [
+  DetailsItem("Name", "Spectrum New Era 3"),
+  DetailsItem("Class", "Primary 3"),
+  DetailsItem("Publisher", "Spectrum Book Publishers"),
+  DetailsItem("Size", "100mb"),
+];
+
+class DetailsItem {
+  String tittle;
+  String content;
+
+  DetailsItem(this.tittle, this.content);
 }

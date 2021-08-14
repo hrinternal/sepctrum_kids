@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class SecondMyBooks extends StatefulWidget {
   static const routeName = '/second-books';
 
-  final List accessCodeBooks;
+  final List? accessCodeBooks;
   SecondMyBooks({this.accessCodeBooks});
 
   @override
@@ -88,7 +88,7 @@ class _SecondMyBooksState extends State<SecondMyBooks> {
     );
   }
 
-  Widget title({int index}) {
+  Widget title({int? index}) {
     switch (index) {
       case 0:
         return Row(

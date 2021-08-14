@@ -1,11 +1,11 @@
 class GapsModel {
-  String word;
-  String wordGap;
-  String option1;
-  String option2;
-  String answer;
-  bool isEnabled;
-  bool isAnswered;
+  String? word;
+  String? wordGap;
+  String? option1;
+  String? option2;
+  String? answer;
+  bool? isEnabled;
+  bool? isAnswered;
 
   GapsModel({
     this.word,

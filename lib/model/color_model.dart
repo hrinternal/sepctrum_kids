@@ -1,7 +1,7 @@
 class ColorEntity {
-  String code;
-  String name;
-  String audio;
+  String? code;
+  String? name;
+  String? audio;
 
   ColorEntity({
     this.code,

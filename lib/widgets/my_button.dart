@@ -3,10 +3,10 @@ import 'package:spectrum_kids/utility/color_box.dart';
 import 'package:spectrum_kids/utility/text_style.dart';
 
 class MyButton extends StatelessWidget {
-  final Function onPressed;
-  final String label;
+  final VoidCallback onPressed;
+  final String? label;
 
-  MyButton({this.label, this.onPressed});
+  MyButton({this.label, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,9 @@ class MyButton extends StatelessWidget {
       child: FlatButton(
         onPressed: onPressed,
         child: Text(
-          label,
-          style: TextStyles.h3style.copyWith(color: Colors.white, fontSize: 17.0),
+          label!,
+          style:
+              TextStyles.h3style.copyWith(color: Colors.white, fontSize: 17.0),
         ),
       ),
     );

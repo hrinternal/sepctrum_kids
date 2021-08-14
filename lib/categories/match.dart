@@ -67,7 +67,7 @@ class _MatchScreenState extends State<MatchScreen> {
 
   Widget _buildDragTarget(emoji) {
     return DragTarget<String>(
-      builder: (BuildContext context, List<String> incoming, List rejected) {
+      builder: (BuildContext context, List<String?> incoming, List rejected) {
         if (score[emoji] == true) {
           return Container(
             color: Colors.white,
@@ -93,9 +93,9 @@ class _MatchScreenState extends State<MatchScreen> {
 }
 
 class Emoji extends StatelessWidget {
-  Emoji({Key key, this.emoji}) : super(key: key);
+  Emoji({Key? key, this.emoji}) : super(key: key);
 
-  final String emoji;
+  final String? emoji;
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +105,7 @@ class Emoji extends StatelessWidget {
         alignment: Alignment.center,
         height: 75,
         padding: EdgeInsets.all(10),
-        child: Text(emoji, style: TextStyle(color: Colors.black, fontSize: 50),
+        child: Text(emoji!, style: TextStyle(color: Colors.black, fontSize: 50),
         ),
       ),
     );

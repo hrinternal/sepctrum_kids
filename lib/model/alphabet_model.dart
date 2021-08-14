@@ -1,6 +1,6 @@
 class AlphabetsEntity {
-  String text;
-  String audio;
+  String? text;
+  String? audio;
 
   AlphabetsEntity({
     this.text,

@@ -114,28 +114,28 @@ class AppDrawer extends StatelessWidget {
 }
 
 class DrawerListTiles extends StatelessWidget {
-  final IconData icons;
-  final String title;
-  final int page;
-  final Widget screen;
+  final IconData? icons;
+  final String? title;
+  final int? page;
+  final Widget? screen;
 
   const DrawerListTiles({
     @required this.page,
     @required this.icons,
     @required this.title,
     this.screen,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        if (page >= 0 && page <= 3) {
+        if (page! >= 0 && page! <= 3) {
           // context.read<DrawerBottomNavigation>().selectedindex(page);
           Navigator.pop(context);
         } else if (page == 4) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => screen!));
         } else if (page == 5) {
           // Navigator.pop(context);
 
@@ -145,7 +145,7 @@ class DrawerListTiles extends StatelessWidget {
       child: ListTile(
         leading: Icon(icons, color: Colors.white),
         title: Text(
-          title,
+          title!,
           style: TextStyle(
             color: Colors.white,
             fontSize: 18.0,

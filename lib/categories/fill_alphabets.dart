@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_sound/flutter_sound_player.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import 'package:spectrum_kids/model/fill_alphabets_model.dart';
 
 Future<List<FillAlphabetsModel>> _fetchAlphabets() async {
@@ -19,9 +19,9 @@ class FillAlphabetsScreen extends StatefulWidget {
 }
 
 class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
-  Future<List<FillAlphabetsModel>> fillAlphabetsModel;
-  FlutterSoundPlayer _soundPlayer;
-  int _selectedIndex;
+  Future<List<FillAlphabetsModel>>? fillAlphabetsModel;
+  FlutterSoundPlayer? _soundPlayer;
+  int? _selectedIndex;
 
   @override
   void initState() {
@@ -34,7 +34,8 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
   void _playAudio(String audioPath) async {
     // Load a local audio file and get it as a buffer
     Uint8List buffer = (await rootBundle.load(audioPath)).buffer.asUint8List();
-    await _soundPlayer.startPlayerFromBuffer(buffer);
+    // await _soundPlayer?.startPlayerFromBuffer(buffer);
+    await _soundPlayer?.startPlayer(fromURI: audioPath);
   }
 
   @override
@@ -75,10 +76,11 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
 
         //for the alphabets
         Expanded(
-          child: FutureBuilder(
+          child: FutureBuilder<List>(
             future: fillAlphabetsModel,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
+                var data = snapshot.data!;
                 return MediaQuery.removePadding(
                   context: context,
                   removeTop: true,
@@ -87,7 +89,7 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
                       crossAxisCount: 4,
                       crossAxisSpacing: 5.0,
                     ),
-                    itemCount: snapshot.data.length,
+                    itemCount: data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
                         alignment: Alignment.center,
@@ -98,7 +100,7 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
                             border: Border.all(color: Colors.green.shade700)
                           ),
                           child: Center(
-                              child: Text(snapshot.data[index].letter, style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold),
+                              child: Text(data[index].letter, style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center)),
                         ),
                       );
@@ -119,7 +121,7 @@ class _FillAlphabetsScreenState extends State<FillAlphabetsScreen> {
 
   @override
   void dispose() {
-    _soundPlayer.release();
+    // _soundPlayer?.release();
     super.dispose();
   }
 }

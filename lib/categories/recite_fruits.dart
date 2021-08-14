@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_sound/flutter_sound_player.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import 'package:spectrum_kids/model/fruit_model.dart';
 import 'package:spectrum_kids/widgets/fruit_tile_card.dart';
 
@@ -16,7 +16,7 @@ Future<List<FruitsEntity>> _fetchFruits() async {
 
 class ReciteFruitsScreen extends StatefulWidget {
   static const routeName = '/recite-fruits';
-  final String title;
+  final String? title;
   // final Color primaryColor;
   // final Color secondaryColor;
 
@@ -31,9 +31,9 @@ class ReciteFruitsScreen extends StatefulWidget {
 }
 
 class _ReciteFruitsScreenState extends State<ReciteFruitsScreen> {
-  Future<List<FruitsEntity>> _fruitsFuture;
-  FlutterSoundPlayer _soundPlayer;
-  int _selectedIndex;
+  late Future<List<FruitsEntity>> _fruitsFuture;
+  late FlutterSoundPlayer _soundPlayer;
+  late int _selectedIndex;
 
   @override
   void initState() {
@@ -46,7 +46,9 @@ class _ReciteFruitsScreenState extends State<ReciteFruitsScreen> {
   void _playAudio(String audioPath) async {
     // Load a local audio file and get it as a buffer
     Uint8List buffer = (await rootBundle.load(audioPath)).buffer.asUint8List();
-    await _soundPlayer.startPlayerFromBuffer(buffer);
+    // await _soundPlayer.startPlayerFromBuffer(buffer);
+    await _soundPlayer?.startPlayer(fromURI:audioPath);
+
   }
 
   @override
@@ -59,10 +61,11 @@ class _ReciteFruitsScreenState extends State<ReciteFruitsScreen> {
           ),
 
           Expanded(
-            child: FutureBuilder(
+            child: FutureBuilder<List>(
               future: _fruitsFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
+                  var data = snapshot.data!;
                   return MediaQuery.removePadding(
                     context: context,
                     removeTop: true,
@@ -71,7 +74,7 @@ class _ReciteFruitsScreenState extends State<ReciteFruitsScreen> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 20.0,
                       ),
-                      itemCount: snapshot.data.length,
+                      itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: index % 2 == 0
@@ -79,14 +82,14 @@ class _ReciteFruitsScreenState extends State<ReciteFruitsScreen> {
                               : const EdgeInsets.only(bottom: 20, right: 20),
                           child: FruitTileCard(
                             isActive: _selectedIndex == index,
-                            image: snapshot.data[index].image,
-                            fruitName: snapshot.data[index].text,
+                            image: data[index].image,
+                            fruitName: data[index].text,
                             // textColor: getIndexColor(index),
                             onTap: () {
                               setState(() {
                                 _selectedIndex = index;
                               });
-                              _playAudio(snapshot.data[index].audio);
+                              _playAudio(data[index].audio);
                             },
                           ),
                         );
@@ -107,7 +110,7 @@ class _ReciteFruitsScreenState extends State<ReciteFruitsScreen> {
 
   @override
   void dispose() {
-    _soundPlayer.release();
+    // _soundPlayer.release();
     super.dispose();
   }
 }

@@ -18,7 +18,7 @@ class Painter extends StatefulWidget {
 }
 
 class _PainterState extends State<Painter> {
-  bool _finished;
+  bool? _finished;
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _PainterState extends State<Painter> {
     setState(() {
       _finished = true;
     });
-    return context.size;
+    return context.size!;
   }
 
   @override
@@ -42,7 +42,7 @@ class _PainterState extends State<Painter> {
           repaint: widget.painterController),
     );
     child = new ClipRect(child: child);
-    if (!_finished) {
+    if (!_finished!) {
       child = new GestureDetector(
         child: child,
         onPanStart: _onPanStart,
@@ -80,7 +80,7 @@ class _PainterState extends State<Painter> {
 class _PainterPainter extends CustomPainter {
   final _PathHistory _path;
 
-  _PainterPainter(this._path, {Listenable repaint}) : super(repaint: repaint);
+  _PainterPainter(this._path, {Listenable? repaint}) : super(repaint: repaint);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -94,47 +94,47 @@ class _PainterPainter extends CustomPainter {
 }
 
 class _PathHistory {
-  List<MapEntry<Path, Paint>> _paths;
-  Paint currentPaint;
-  Paint _backgroundPaint;
-  bool _inDrag;
+  List<MapEntry<Path, Paint>>? _paths;
+  Paint? currentPaint;
+  Paint? _backgroundPaint;
+  bool? _inDrag;
 
-  bool get isEmpty => _paths.isEmpty || (_paths.length == 1 && _inDrag);
+  bool get isEmpty => _paths!.isEmpty || (_paths!.length == 1 && _inDrag!);
 
   _PathHistory() {
-    _paths = new List<MapEntry<Path, Paint>>();
+    _paths = [];
     _inDrag = false;
     _backgroundPaint = new Paint()..blendMode = BlendMode.dstOver;
   }
 
   void setBackgroundColor(Color backgroundColor) {
-    _backgroundPaint.color = backgroundColor;
+    _backgroundPaint!.color = backgroundColor;
   }
 
   void undo() {
-    if (!_inDrag) {
-      _paths.removeLast();
+    if (!_inDrag!) {
+      _paths!.removeLast();
     }
   }
 
   void clear() {
-    if (!_inDrag) {
-      _paths.clear();
+    if (!_inDrag!) {
+      _paths!.clear();
     }
   }
 
   void add(Offset startPoint) {
-    if (!_inDrag) {
+    if (!_inDrag!) {
       _inDrag = true;
       Path path = new Path();
       path.moveTo(startPoint.dx, startPoint.dy);
-      _paths.add(new MapEntry<Path, Paint>(path, currentPaint));
+      _paths!.add(new MapEntry<Path, Paint>(path, currentPaint!));
     }
   }
 
   void updateCurrent(Offset nextPoint) {
-    if (_inDrag) {
-      Path path = _paths.last.key;
+    if (_inDrag!) {
+      Path path = _paths!.last.key;
       path.lineTo(nextPoint.dx, nextPoint.dy);
     }
   }
@@ -145,12 +145,12 @@ class _PathHistory {
 
   void draw(Canvas canvas, Size size) {
     canvas.saveLayer(Offset.zero & size, Paint());
-    for (MapEntry<Path, Paint> path in _paths) {
+    for (MapEntry<Path, Paint> path in _paths!) {
       Paint p = path.value;
       canvas.drawPath(path.key, p);
     }
-    canvas.drawRect(
-        new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _backgroundPaint);
+    canvas.drawRect(new Rect.fromLTWH(0.0, 0.0, size.width, size.height),
+        _backgroundPaint!);
     canvas.restore();
   }
 }
@@ -170,7 +170,7 @@ class PictureDetails {
 
   Future<Uint8List> toPNG() async {
     final image = await toImage();
-    return (await image.toByteData(format: ImageByteFormat.png))
+    return (await image.toByteData(format: ImageByteFormat.png))!
         .buffer
         .asUint8List();
   }
@@ -182,9 +182,9 @@ class PainterController extends ChangeNotifier {
   bool _eraseMode = false;
 
   double _thickness = 1.0;
-  PictureDetails _cached;
-  _PathHistory _pathHistory;
-  ValueGetter<Size> _widgetFinish;
+  late PictureDetails _cached;
+  late _PathHistory _pathHistory;
+  late ValueGetter<Size> _widgetFinish;
 
   PainterController() {
     _pathHistory = new _PathHistory();

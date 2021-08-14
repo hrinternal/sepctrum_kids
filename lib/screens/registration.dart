@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:get/get.dart';
 import 'package:spectrum_kids/screens/home_screen.dart';
 import 'package:spectrum_kids/utility/color_box.dart';
 import 'package:spectrum_kids/utility/text_style.dart';
@@ -15,21 +16,22 @@ class RegistrationScreen extends StatefulWidget {
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> with SingleTickerProviderStateMixin {
+class _RegistrationScreenState extends State<RegistrationScreen>
+    with SingleTickerProviderStateMixin {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   var _phoneController = new MaskedTextController(mask: '000-0000-0000');
-  var _accessCodeController = new MaskedTextController(mask: '@@@@-@@@@-@@@@-@@@@');
+  var _accessCodeController =
+      new MaskedTextController(mask: '@@@@-@@@@-@@@@-@@@@');
 
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   ScrollController _scrollController = ScrollController();
 
-  AnimationController _controller;
-  Animation _animation;
+  late AnimationController _controller;
+  late Animation _animation;
 
   FocusNode _focusNode = FocusNode();
 
@@ -151,12 +153,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                         input: TextInputType.text,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5.0, vertical: 20.0),
                         child: Builder(
                           builder: (context) => MyButton(
                             label: 'Register',
-                            onPressed: ()  {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+                            onPressed: () {
+                              // if (_formKey.currentState!.validate()) {
+                                print("okay");
+                                Get.to(HomeScreen());
+                              // }
                             },
                           ),
                         ),
@@ -164,7 +170,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
@@ -175,12 +180,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
 }
 
 class TextFieldWidget extends StatelessWidget {
-  final String hint;
-  final Function validator;
-  final TextEditingController controller;
-  final TextInputType input;
-  final FocusNode focusNode;
-  TextFieldWidget({this.hint, this.controller, this.validator, this.input, this.focusNode});
+  final String? hint;
+  final FormFieldValidator? validator;
+  final TextEditingController? controller;
+  final TextInputType? input;
+  final FocusNode? focusNode;
+
+  TextFieldWidget(
+      {this.hint, this.controller, this.validator, this.input, this.focusNode});
 
   @override
   Widget build(BuildContext context) {

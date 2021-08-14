@@ -1,5 +1,5 @@
 class FillAlphabetsModel {
-  String letter;
+  String? letter;
   // String wordGap;
   // String option1;
   // String option2;

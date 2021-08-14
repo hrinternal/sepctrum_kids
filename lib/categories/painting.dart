@@ -10,8 +10,8 @@ class PaintingScreen extends StatefulWidget {
 }
 
 class _ExamplePageState extends State<PaintingScreen> {
-  bool _finished;
-  PainterController _controller;
+  late bool _finished;
+  late PainterController _controller;
 
   @override
   void initState() {
@@ -103,7 +103,8 @@ class _ExamplePageState extends State<PaintingScreen> {
                     if (snapshot.hasError) {
                       return new Text('Error: ${snapshot.error}');
                     } else {
-                      return Image.memory(snapshot.data);
+                      var data = snapshot.data!;
+                      return Image.memory(data);
                     }
                     break;
                   default:

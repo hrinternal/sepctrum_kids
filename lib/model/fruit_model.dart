@@ -1,7 +1,7 @@
 class FruitsEntity {
-  String image;
-  String audio;
-  String text;
+  String? image;
+  String? audio;
+  String? text;
 
   FruitsEntity({
     this.image,

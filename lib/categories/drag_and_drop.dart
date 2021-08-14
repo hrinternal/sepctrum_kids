@@ -105,7 +105,7 @@ class _DragDropScreenState extends State<DragDropScreen> {
 
   Widget _buildDragTarget(emoji) {
     return DragTarget<String>(
-      builder: (BuildContext context, List<String> incoming, List rejected) {
+      builder: (BuildContext context, List<String?> incoming, List rejected) {
         if (score[emoji] == true) {
           return Container(
             decoration: BoxDecoration(
@@ -144,9 +144,9 @@ class _DragDropScreenState extends State<DragDropScreen> {
 }
 
 class Emoji extends StatelessWidget {
-  Emoji({Key key, this.emoji}) : super(key: key);
+  Emoji({Key? key, this.emoji}) : super(key: key);
 
-  final String emoji;
+  final String? emoji;
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +155,7 @@ class Emoji extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         // padding: EdgeInsets.all(10),
-        child: Image.asset(emoji,
+        child: Image.asset(emoji!,
           // style: TextStyle(color: Colors.black, fontSize: 100),
         ),
       ),

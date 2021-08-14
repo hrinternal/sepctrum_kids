@@ -2,12 +2,12 @@ import 'package:spectrum_kids/utility/constant.dart';
 import 'package:flutter/material.dart';
 
 class PageHeader extends StatelessWidget {
-  final String title;
-  final Color primaryColor;
-  final Color secondaryColor;
+  final String? title;
+  final Color? primaryColor;
+  final Color? secondaryColor;
 
   const PageHeader({
-    Key key,
+    Key? key,
     this.title,
     this.primaryColor,
     this.secondaryColor,
@@ -26,8 +26,8 @@ class PageHeader extends StatelessWidget {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              primaryColor,
-              secondaryColor,
+              primaryColor!,
+              secondaryColor!,
             ],
           ),
           image: DecorationImage(

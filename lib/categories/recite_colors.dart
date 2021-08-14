@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_sound/flutter_sound_player.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import 'package:spectrum_kids/widgets/page_header.dart';
 import 'package:spectrum_kids/widgets/tile_card.dart';
 import 'package:spectrum_kids/model/color_model.dart';
@@ -20,9 +20,9 @@ Future<List<ColorEntity>> _fetchColors() async {
 }
 
 class ColorsScreen extends StatefulWidget {
-  final String title;
-  final Color primaryColor;
-  final Color secondaryColor;
+  final String? title;
+  final Color? primaryColor;
+  final Color? secondaryColor;
 
   ColorsScreen({
     this.title,
@@ -35,9 +35,9 @@ class ColorsScreen extends StatefulWidget {
 }
 
 class _ColorsScreenState extends State<ColorsScreen> {
-  Future<List<ColorEntity>> _colorsFuture;
-  FlutterSoundPlayer _soundPlayer;
-  int _selectedIndex;
+  late Future<List<ColorEntity>> _colorsFuture;
+  late FlutterSoundPlayer _soundPlayer;
+  late int _selectedIndex;
 
   @override
   void initState() {
@@ -50,7 +50,9 @@ class _ColorsScreenState extends State<ColorsScreen> {
   void _playAudio(String audioPath) async {
     // Load a local audio file and get it as a buffer
     Uint8List buffer = (await rootBundle.load(audioPath)).buffer.asUint8List();
-    await _soundPlayer.startPlayerFromBuffer(buffer);
+    // await _soundPlayer.startPlayerFromBuffer(buffer);
+    await _soundPlayer.startPlayer(fromURI:audioPath);
+
   }
 
   @override
@@ -64,10 +66,11 @@ class _ColorsScreenState extends State<ColorsScreen> {
           ),
 
           Expanded(
-            child: FutureBuilder(
+            child: FutureBuilder<List>(
               future: _colorsFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
+                  var data = snapshot.data!;
                   return MediaQuery.removePadding(
                     context: context,
                     removeTop: true,
@@ -76,7 +79,7 @@ class _ColorsScreenState extends State<ColorsScreen> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 20.0,
                       ),
-                      itemCount: snapshot.data.length,
+                      itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: index % 2 == 0
@@ -84,12 +87,12 @@ class _ColorsScreenState extends State<ColorsScreen> {
                               : const EdgeInsets.only(bottom: 20, right: 20),
                           child: TileCard(
                             isActive: _selectedIndex == index,
-                            title: snapshot.data[index].name,
-                            textColor: snapshot.data[index].name == 'White'
+                            title: data[index].name,
+                            textColor: data[index].name == 'White'
                                 ? kTitleTextColor
                                 : Colors.white,
                             backgroundColor:
-                                Color(int.parse(snapshot.data[index].code)),
+                                Color(int.parse(data[index].code)),
                             fontSizeBase: 30,
                             fontSizeActive: 40,
                             onTap: () {
@@ -97,7 +100,7 @@ class _ColorsScreenState extends State<ColorsScreen> {
                                 _selectedIndex = index;
                               });
 
-                              _playAudio(snapshot.data[index].audio);
+                              _playAudio(data[index].audio);
                             },
                           ),
                         );
@@ -119,7 +122,7 @@ class _ColorsScreenState extends State<ColorsScreen> {
 
   @override
   void dispose() {
-    _soundPlayer.release();
+    // _soundPlayer.release();
     super.dispose();
   }
 }

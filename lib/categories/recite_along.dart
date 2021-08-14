@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_sound/flutter_sound_player.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import 'package:spectrum_kids/model/alphabet_model.dart';
 import 'package:spectrum_kids/widgets/helper.dart';
 import 'package:spectrum_kids/widgets/tile_card.dart';
@@ -18,9 +18,9 @@ Future<List<AlphabetsEntity>> _fetchAlphabets() async {
 class ReciteAlongScreen extends StatefulWidget {
   static const routeName = '/recite-along';
 // just editing for test.. remove the comment when you see
-  final String title;
-  final Color primaryColor;
-  final Color secondaryColor;
+  final String? title;
+  final Color? primaryColor;
+  final Color? secondaryColor;
 
   ReciteAlongScreen({
     this.title,
@@ -33,9 +33,9 @@ class ReciteAlongScreen extends StatefulWidget {
 }
 
 class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
-  Future<List<AlphabetsEntity>> _alphabetsFuture;
-  FlutterSoundPlayer _soundPlayer;
-  int _selectedIndex;
+  late Future<List<AlphabetsEntity>> _alphabetsFuture;
+  late FlutterSoundPlayer _soundPlayer;
+  late int _selectedIndex;
 
   @override
   void initState() {
@@ -47,7 +47,9 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
   void _playAudio(String audioPath) async {
     // Load a local audio file and get it as a buffer
     Uint8List buffer = (await rootBundle.load(audioPath)).buffer.asUint8List();
-    await _soundPlayer.startPlayerFromBuffer(buffer);
+    // await _soundPlayer.startPlayerFromBuffer(buffer);
+    await _soundPlayer.startPlayer(fromURI:audioPath);
+
   }
 
   @override
@@ -60,10 +62,11 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
           ),
 
           Expanded(
-            child: FutureBuilder(
+            child: FutureBuilder<List>(
               future: _alphabetsFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
+                  var data = snapshot.data!;
                   return MediaQuery.removePadding(
                     context: context,
                     removeTop: true,
@@ -72,7 +75,7 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 20.0,
                       ),
-                      itemCount: snapshot.data.length,
+                      itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: index % 2 == 0
@@ -80,13 +83,13 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
                               : const EdgeInsets.only(bottom: 20, right: 20),
                           child: TileCard(
                             isActive: _selectedIndex == index,
-                            title: snapshot.data[index].text,
+                            title: data[index].text,
                             textColor: getIndexColor(index),
                             onTap: () {
                               setState(() {
                                 _selectedIndex = index;
                               });
-                              _playAudio(snapshot.data[index].audio);
+                              _playAudio(data[index].audio);
                             },
                           ),
                         );
@@ -107,7 +110,7 @@ class _ReciteAlongScreenState extends State<ReciteAlongScreen> {
 
   @override
   void dispose() {
-    _soundPlayer.release();
+    // _soundPlayer.release();
     super.dispose();
   }
 }

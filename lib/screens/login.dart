@@ -26,8 +26,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
 
   ScrollController _scrollController = ScrollController();
 
-  AnimationController _controller;
-  Animation _animation;
+  late AnimationController _controller;
+  late Animation _animation;
 
   FocusNode _focusNode = FocusNode();
 
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         // focusNode: _focusNode,
                         hint: 'Username',
                         validator: (input) {
-                          if (input.isEmpty) {
+                          if (input!.isEmpty) {
                             return 'Username is required!';
                           }
                           return null;
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         // focusNode: _focusNode,
                         hint: 'Password',
                         validator: (input) {
-                          if (input.isEmpty) {
+                          if (input!.isEmpty) {
                             return 'Password is required!';
                           }
                           return null;
@@ -131,11 +131,11 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
 }
 
 class TextFieldWidget extends StatelessWidget {
-  final String hint;
-  final Function validator;
-  final TextEditingController controller;
-  final TextInputType input;
-  final FocusNode focusNode;
+  final String? hint;
+  final FormFieldValidator<String>? validator;
+  final TextEditingController? controller;
+  final TextInputType? input;
+  final FocusNode? focusNode;
   TextFieldWidget({this.hint, this.controller, this.validator, this.input, this.focusNode});
 
   @override
@@ -161,7 +161,7 @@ class TextFieldWidget extends StatelessWidget {
         autofocus: false,
         keyboardType: input,
         controller: controller,
-        validator: validator,
+        validator: validator!,
       ),
     );
   }

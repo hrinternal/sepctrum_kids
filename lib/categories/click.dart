@@ -3,10 +3,10 @@ import 'dart:typed_data';
 import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_sound/flutter_sound_player.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import 'package:spectrum_kids/model/gaps_model.dart';
 import 'package:spectrum_kids/widgets/custom_dialog.dart';
-
+// import 'package:';
 Future<List<GapsModel>> _fetchGaps() async {
   String jsonString = await rootBundle.loadString('assets/data/gaps.json');
   final jsonParsed =  json.decode(jsonString);
@@ -15,7 +15,7 @@ Future<List<GapsModel>> _fetchGaps() async {
 
 class ClickScreen extends StatefulWidget {
   // static const routeName = '/recite-fruits';
-  final String title;
+  final String? title;
 
   ClickScreen({this.title,});
 
@@ -24,14 +24,13 @@ class ClickScreen extends StatefulWidget {
 }
 
 class _ClickScreenState extends State<ClickScreen> {
-  Future<List<GapsModel>> _gapsFuture;
-  FlutterSoundPlayer _soundPlayer;
-  int _selectedIndex;
+  Future<List<GapsModel>>? _gapsFuture;
+  FlutterSoundPlayer? _soundPlayer;
+  int? _selectedIndex;
 
   @override
   void initState() {
     super.initState();
-
     _gapsFuture = _fetchGaps();
     _soundPlayer = new FlutterSoundPlayer();
   }
@@ -39,7 +38,8 @@ class _ClickScreenState extends State<ClickScreen> {
   void _playAudio(String audioPath) async {
     // Load a local audio file and get it as a buffer
     Uint8List buffer = (await rootBundle.load(audioPath)).buffer.asUint8List();
-    await _soundPlayer.startPlayerFromBuffer(buffer);
+    // await _soundPlayer?.startPlayerFromBuffer(buffer);
+    await _soundPlayer?.startPlayer(fromURI:audioPath);
   }
 
   @override
@@ -54,7 +54,7 @@ class _ClickScreenState extends State<ClickScreen> {
         ),
 
         Expanded(
-          child: FutureBuilder(
+          child: FutureBuilder<List>(
             future: _gapsFuture,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -62,23 +62,25 @@ class _ClickScreenState extends State<ClickScreen> {
                   context: context,
                   removeTop: true,
                   child: ListView.builder(
-                    itemCount: snapshot.data.length,
+                    itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
+                      var data2 = snapshot.data!;
                       return Container(
                         alignment: Alignment.center,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 30.0),
                           child: Row(
                             children: [
-                              Text(snapshot.data[index].wordGap, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, letterSpacing: 8)),
+                              Text(data2[index].wordGap, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, letterSpacing: 8)),
                               Spacer(),
 
                               InkWell(
                                 onTap: (){
-                                  if (snapshot.data[index].option1 == snapshot.data[index].answer){
+                                  List data = data2;
+                                  if (data[index].option1 == data[index].answer){
                                     setState(() {
-                                      snapshot.data[index].wordGap = snapshot.data[index].word;
-                                      snapshot.data[index].isAnswered = true;
+                                      data[index].wordGap = data[index].word;
+                                      data[index].isAnswered = true;
                                     });
                                   }
                                   else{
@@ -97,7 +99,7 @@ class _ClickScreenState extends State<ClickScreen> {
                                       border: Border.all(width: 1),
                                     ),
                                     child: Center(
-                                      child: Text(snapshot.data[index].option1,
+                                      child: Text(data2[index].option1,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.redAccent),
                                       ),
@@ -109,10 +111,10 @@ class _ClickScreenState extends State<ClickScreen> {
 
                               InkWell(
                                 onTap: (){
-                                  if (snapshot.data[index].option2 == snapshot.data[index].answer){
+                                  if (data2[index].option2 == data2[index].answer){
                                     setState(() {
-                                      snapshot.data[index].wordGap = snapshot.data[index].word;
-                                      snapshot.data[index].isAnswered = true;
+                                      data2[index].wordGap = data2[index].word;
+                                      data2[index].isAnswered = true;
                                     });
                                   }
                                   else {
@@ -131,7 +133,7 @@ class _ClickScreenState extends State<ClickScreen> {
                                       border: Border.all(width: 1),
                                     ),
                                     child: Center(
-                                        child: Text(snapshot.data[index].option2, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.redAccent))
+                                        child: Text(data2[index].option2, style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.redAccent))
                                     )
                                 ),
                               ),
@@ -164,7 +166,7 @@ class _ClickScreenState extends State<ClickScreen> {
 
   @override
   void dispose() {
-    _soundPlayer.release();
+    // _soundPlayer?.release();
     super.dispose();
   }
 }

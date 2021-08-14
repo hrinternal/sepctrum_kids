@@ -7,7 +7,7 @@ import 'package:spectrum_kids/utility/color_box.dart';
 class MyBooksScreen extends StatefulWidget {
   static const routeName = '/my-books';
 
-  final List accessCodeBooks;
+  final List? accessCodeBooks;
   MyBooksScreen({this.accessCodeBooks});
 
   @override
@@ -73,7 +73,7 @@ class _MyBooksScreenState extends State<MyBooksScreen> {
     );
   }
 
-  Widget title({int index}) {
+  Widget title({int? index}) {
     switch (index) {
       case 0:
         return Row(

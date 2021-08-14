@@ -1,28 +1,25 @@
 import 'dart:ui';
-import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
-
   @override
   _AudioPlayerScreenState createState() => _AudioPlayerScreenState();
 }
 
-class _AudioPlayerScreenState extends State<AudioPlayerScreen> with TickerProviderStateMixin {
-
-  AnimationController _animationIconController1;
-  AudioCache audioCache;
-  AudioPlayer audioPlayer;
+class _AudioPlayerScreenState extends State<AudioPlayerScreen>
+    with TickerProviderStateMixin {
+  late AnimationController _animationIconController1;
+  late AudioCache audioCache;
+  late AudioPlayer audioPlayer;
   Duration _duration = new Duration();
   Duration _position = new Duration();
   Duration _slider = new Duration(seconds: 0);
-  double durationvalue;
+  late double durationvalue;
   bool issongplaying = false;
 
   @override
-
   void initState() {
     super.initState();
     _position = _slider;
@@ -33,15 +30,20 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> with TickerProvid
     );
     audioPlayer = new AudioPlayer();
     audioCache = new AudioCache(fixedPlayer: audioPlayer);
-    audioPlayer.durationHandler = (d) => setState(() {
+    audioPlayer.onDurationChanged.listen((d) {
       _duration = d;
     });
-
-    audioPlayer.positionHandler = (p) => setState(() {
-      _position = p;
+    audioPlayer.onAudioPositionChanged.listen((p) {
+      _position =p;
     });
-  }
+    // audioPlayer.onDurationChanged = (d) => setState(() {
+    //       _duration = d;
+    //     });
 
+    // audioPlayer.positionHandler = (p) => setState(() {
+    //       _position = p;
+    //     });
+  }
 
   void seekToSecond(int second) {
     Duration newDuration = Duration(seconds: second);
@@ -52,7 +54,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> with TickerProvid
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         decoration: BoxDecoration(color: Colors.grey[100]),
         child: Container(
@@ -96,7 +97,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> with TickerProvid
                         GestureDetector(
                           onTap: () {
                             setState(
-                                  () {
+                              () {
                                 if (!issongplaying) {
                                   audioCache.play("music/abc_song.mp3");
                                 } else {
