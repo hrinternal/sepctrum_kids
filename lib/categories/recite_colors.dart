@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:async' show Future;
 import 'dart:typed_data';
 import 'dart:ui';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_sound/flutter_sound.dart';
@@ -37,7 +38,7 @@ class ColorsScreen extends StatefulWidget {
 class _ColorsScreenState extends State<ColorsScreen> {
   late Future<List<ColorEntity>> _colorsFuture;
   late FlutterSoundPlayer _soundPlayer;
-  late int _selectedIndex;
+  int? _selectedIndex;
 
   @override
   void initState() {
@@ -49,15 +50,18 @@ class _ColorsScreenState extends State<ColorsScreen> {
 
   void _playAudio(String audioPath) async {
     // Load a local audio file and get it as a buffer
-    Uint8List buffer = (await rootBundle.load(audioPath)).buffer.asUint8List();
+    // Uint8List buffer = (await rootBundle.load(audioPath)).buffer.asUint8List();
     // await _soundPlayer.startPlayerFromBuffer(buffer);
-    await _soundPlayer.startPlayer(fromURI:audioPath);
+    // await _soundPlayer.startPlayer(fromURI:audioPath);
+    AudioCache player = new AudioCache();
+    player.play(audioPath.replaceFirst("assets/", ""));
 
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Identify Color"),),
       body: Column(
         children: <Widget>[
           Padding(

@@ -161,7 +161,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                             onPressed: () {
                               // if (_formKey.currentState!.validate()) {
                                 print("okay");
-                                Get.to(HomeScreen());
+                                Get.to(()=>HomeScreen());
                               // }
                             },
                           ),

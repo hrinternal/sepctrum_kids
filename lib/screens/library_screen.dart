@@ -31,32 +31,34 @@ class _LibraryScreenState extends State<LibraryScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //for search
-              // Container(
-              //   height: 50,
-              //   color: Colors.grey[300],
-              //   child: TextField(
-              //     controller:searchTextController,
-              //     onSubmitted: (value) {},
-              //     textInputAction: TextInputAction.go,
-              //     decoration: new InputDecoration(
-              //       suffixIcon:FlatButton(
-              //           color: Colors.transparent,
-              //           onPressed: () {},
-              //           child: Container(
-              //               child:   Icon(Icons.search, color: Color(0xffD9583B))
-              //           )
-              //       ) ,
-              //       border: OutlineInputBorder(
-              //         borderSide: BorderSide.none,
-              //       ),
-              //       hintText: "Enter Keyword...",
-              //       hintStyle: TextStyle( fontSize: 20.0, color: Colors.grey[700], ),
-              //     ),
-              //   ),
-              // ),
+              // for search
+              Container(
+                height: 50,
+                color: Colors.grey[300],
+                child: TextField(
+                  controller: searchTextController,
+                  onSubmitted: (value) {},
+                  textInputAction: TextInputAction.go,
+                  decoration: new InputDecoration(
+                    suffixIcon: FlatButton(
+                        color: Colors.transparent,
+                        onPressed: () {},
+                        child: Container(
+                            child:
+                                Icon(Icons.search, color: Color(0xffD9583B)))),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                    ),
+                    hintText: "Enter Keyword...",
+                    hintStyle: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                ),
+              ),
 
-              // SizedBox(height: 40),
+              SizedBox(height: 40),
 
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
@@ -68,24 +70,24 @@ class _LibraryScreenState extends State<LibraryScreen> {
               ),
               Expanded(
                 flex: 2,
-                child: ListView(
-                  // This next line does the trick.
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Image.asset('assets/images/english3.png'),
+                  itemCount: engBooks.length,
+                  itemBuilder: (ctx, index) {
+                    var book = engBooks[index];
+                    return GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right:4.0),
+                        child: Image.asset(book),
+                      ),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => BookDetails()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BookDetails()));
                       },
-                    ),
-                    Image.asset('assets/images/english3.png'),
-                    Image.asset('assets/images/english3.png'),
-                    Image.asset('assets/images/english3.png'),
-                    Image.asset('assets/images/english3.png'),
-                    Image.asset('assets/images/english3.png'),
-                    Image.asset('assets/images/english3.png'),
-                  ],
+                    );
+                  },
                 ),
               ),
 
@@ -98,21 +100,26 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         fontSize: 30,
                         fontWeight: FontWeight.w500,
                         color: Color(0xffD9583B))),
-              ),
-              Expanded(
+              ),Expanded(
                 flex: 2,
-                child: ListView(
-                  // This next line does the trick.
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    Image.asset('assets/images/maths1.png'),
-                    Image.asset('assets/images/maths2.png'),
-                    Image.asset('assets/images/maths1.png'),
-                    Image.asset('assets/images/maths2.png'),
-                    Image.asset('assets/images/maths1.png'),
-                    Image.asset('assets/images/maths2.png'),
-                    Image.asset('assets/images/maths1.png'),
-                  ],
+                  itemCount: matBooks.length,
+                  itemBuilder: (ctx, index) {
+                    var book = matBooks[index];
+                    return GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right:4.0),
+                        child: Image.asset(book),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BookDetails()));
+                      },
+                    );
+                  },
                 ),
               ),
 
@@ -124,3 +131,24 @@ class _LibraryScreenState extends State<LibraryScreen> {
     );
   }
 }
+
+const List<String> engBooks = <String>[
+  'assets/images/english3.png',
+  'assets/images/english3.png',
+  'assets/images/english3.png',
+  'assets/images/english3.png',
+  'assets/images/english3.png',
+  'assets/images/english3.png',
+  'assets/images/english3.png',
+];
+
+const List<String> matBooks = <String>[
+  'assets/images/maths1.png',
+  'assets/images/maths1.png',
+  'assets/images/maths1.png',
+  'assets/images/maths2.png',
+  'assets/images/maths3.png',
+  'assets/images/maths3.png',
+  'assets/images/maths3.png',
+  'assets/images/maths3.png',
+];

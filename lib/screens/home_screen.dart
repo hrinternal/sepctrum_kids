@@ -2,7 +2,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:spectrum_kids/categories/drag_and_drop.dart';
 import 'package:spectrum_kids/categories/fill_alphabets.dart';
+import 'package:spectrum_kids/categories/match.dart';
 import 'package:spectrum_kids/categories/painting.dart';
+import 'package:spectrum_kids/categories/recite.dart';
+import 'package:spectrum_kids/categories/recite_along.dart';
+import 'package:spectrum_kids/categories/recite_fruits.dart';
+import 'package:spectrum_kids/screens/category.dart';
 
 // import 'package:spectrum_kids/categories/recite_along.dart';
 import 'package:spectrum_kids/utility/color_box.dart';
@@ -35,14 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchTextController = TextEditingController();
   int selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-    PaintingScreen(),
-    FillAlphabetsScreen(),
-    ClickScreen(),
-    DragDropScreen(),
-    // LibraryScreen(),
-    // MyBooksScreen(),
-    // SecondMyBooks(),
-    // TracingScreen(),
+    LibraryScreen(),
+    MyBooksScreen(),
+    CategoryScreen(),
   ];
 
   @override
@@ -94,10 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(FluentIcons.arrow_download_24_regular),
             label: 'My Books',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(FluentIcons.note_24_regular),
-            label: 'Book Details',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(FluentIcons.note_24_regular),
+          //   label: 'Book Details',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(FluentIcons.games_24_regular),
             label: 'Categories',

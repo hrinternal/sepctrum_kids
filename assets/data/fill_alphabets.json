@@ -1,80 +1,158 @@
 [
   {
-    "letter": "A"
+    "letter": "A",
+    "selected": 0,
+    "answer": "A",
+    "isAnswered": 1
   },
   {
-    "letter": ""
+    "letter": "",
+    "selected": 0,
+    "answer": "B",
+    "isAnswered": 0
   },
   {
-  "letter": "C"
+    "letter": "C",
+    "selected": 0,
+    "answer": "C",
+    "isAnswered": 1
   },
   {
-  "letter": "D"
+    "letter": "D",
+    "selected": 0,
+    "answer": "D",
+    "isAnswered": 1
   },
   {
-  "letter": "E"
+    "letter": "E",
+    "selected": 0,
+    "answer": "E",
+    "isAnswered": 1
   },
   {
-  "letter": "F"
+    "letter": "F",
+    "selected": 0,
+    "answer": "F",
+    "isAnswered": 1
   },
   {
-  "letter": "G"
+    "letter": "G",
+    "selected": 0,
+    "answer": "G",
+    "isAnswered": 1
   },
   {
-  "letter": ""
+    "letter": "",
+    "selected": 0,
+    "answer": "H",
+    "isAnswered": 0
   },
   {
-  "letter": "I"
+    "letter": "I",
+    "selected": 0,
+    "answer": "I",
+    "isAnswered": 1
   },
   {
-  "letter": ""
+    "letter": "",
+    "selected": 0,
+    "answer": "J",
+    "isAnswered": 0
   },
   {
-  "letter": "K"
+    "letter": "K",
+    "selected": 0,
+    "answer": "K",
+    "isAnswered": 1
   },
   {
-  "letter": "L"
+    "letter": "L",
+    "selected": 0,
+    "answer": "L",
+    "isAnswered": 1
   },
   {
-  "letter": ""
+    "letter": "",
+    "selected": 0,
+    "answer": "M",
+    "isAnswered": 0
   },
   {
-  "letter": "N"
+    "letter": "N",
+    "selected": 0,
+    "answer": "N",
+    "isAnswered": 1
   },
   {
-  "letter": "O"
+    "letter": "O",
+    "selected": 0,
+    "answer": "O",
+    "isAnswered": 1
   },
   {
-  "letter": "P"
+    "letter": "P",
+    "selected": 0,
+    "answer": "P",
+    "isAnswered": 1
   },
   {
-  "letter": "Q"
+    "letter": "Q",
+    "selected": 0,
+    "answer": "Q",
+    "isAnswered": 1
   },
   {
-  "letter": "R"
+    "letter": "R",
+    "selected": 0,
+    "answer": "R",
+    "isAnswered": 1
   },
   {
-    "letter": ""
+    "letter": "",
+    "selected": 0,
+    "answer": "S",
+    "isAnswered": 0
   },
   {
-    "letter": "T"
+    "letter": "T",
+    "selected": 0,
+    "answer": "T",
+    "isAnswered": 1
   },
   {
-    "letter": "U"
+    "letter": "U",
+    "selected": 0,
+    "answer": "U",
+    "isAnswered": 1
   },
   {
-    "letter": "V"
+    "letter": "V",
+    "selected": 0,
+    "answer": "V",
+    "isAnswered": 1
   },
   {
-    "letter": "W"
+    "letter": "W",
+    "selected": 0,
+    "answer": "W",
+    "isAnswered": 1
   },
   {
-    "letter": "X"
+    "letter": "X",
+    "selected": 0,
+    "answer": "X",
+    "isAnswered": 1
   },
   {
-    "letter": "Y"
+    "letter": "Y",
+    "selected": 0,
+    "answer": "Y",
+    "isAnswered": 1
   },
   {
-    "letter": "Z"
+    "letter": "Z",
+    "selected": 0,
+    "answer": "Z",
+    "isAnswered": 1
   }
 ]

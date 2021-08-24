@@ -71,3 +71,4 @@ class FruitTileCard extends StatelessWidget {
     );
   }
 }
+

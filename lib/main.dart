@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spectrum_kids/categories/fill_identify_image.dart';
 import 'package:spectrum_kids/screens/splash_screen.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      // home: FillIdentifyImage(),
       home: SplashScreen(),
     );
   }
