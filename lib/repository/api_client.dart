@@ -1,10 +1,8 @@
-// import 'dart:convert';
-// import 'dart:io';
-//
-// import 'package:http/http.dart' as http;
-// // import 'package:spectrum_kids/model/responses/generic_response.dart';
-// // import 'package:spectrum_kids/repository/app_exceptions.dart';
-// // import 'package:spectrum_kids/utility/constants.dart' as Constants;
+
+class ApiClient {
+
+}
+
 //
 // class ApiClient {
 //

@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:spectrum_kids/utility/color_box.dart';
 import 'package:spectrum_kids/screens/book_details.dart';
+import 'package:spectrum_kids/widgets/book_items.dart';
 
 class LibraryScreen extends StatefulWidget {
   static const routeName = '/library-screen';
@@ -73,21 +74,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: engBooks.length,
-                  itemBuilder: (ctx, index) {
-                    var book = engBooks[index];
-                    return GestureDetector(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right:4.0),
-                        child: Image.asset(book),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BookDetails()));
-                      },
-                    );
-                  },
+                  itemBuilder: (ctx, index) =>
+                      OnlineBookItem(book: engBooks[index]),
                 ),
               ),
 
@@ -100,31 +88,18 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         fontSize: 30,
                         fontWeight: FontWeight.w500,
                         color: Color(0xffD9583B))),
-              ),Expanded(
+              ),
+              Expanded(
                 flex: 2,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: matBooks.length,
-                  itemBuilder: (ctx, index) {
-                    var book = matBooks[index];
-                    return GestureDetector(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right:4.0),
-                        child: Image.asset(book),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BookDetails()));
-                      },
-                    );
-                  },
+                  itemBuilder: (ctx, index) =>
+                      OnlineBookItem(book: matBooks[index]),
                 ),
               ),
 
               SizedBox(height: 30),
-
               Expanded(flex: 2, child: Container()),
             ],
           )),
