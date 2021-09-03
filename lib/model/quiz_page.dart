@@ -9,7 +9,8 @@ class QuizPage {
 
   QuizPage({this.data, this.links});
 
-  factory QuizPage.fromJson(Map<String, dynamic> json) => _$QuizPageFromJson(json);
+  factory QuizPage.fromJson(Map<String, dynamic> json) =>
+      _$QuizPageFromJson(json);
 
   Map<String, dynamic> toJson() => _$QuizPageToJson(this);
 }
@@ -23,7 +24,8 @@ class LinksBean {
 
   LinksBean({this.first, this.last, this.prev, this.next});
 
-  factory LinksBean.fromJson(Map<String, dynamic> json) => _$LinksBeanFromJson(json);
+  factory LinksBean.fromJson(Map<String, dynamic> json) =>
+      _$LinksBeanFromJson(json);
 
   Map<String, dynamic> toJson() => _$LinksBeanToJson(this);
 }
@@ -31,15 +33,23 @@ class LinksBean {
 @JsonSerializable()
 class QuizDataBean {
   String? id;
-  String? book_id;
+  @JsonKey(name:"book_id")
+  String? bookId;
   String? type;
   String? title;
   String? subject;
   List<QuestionsBean>? questions;
 
-  QuizDataBean({this.id, this.book_id, this.type, this.title, this.subject, this.questions});
+  QuizDataBean(
+      {this.id,
+      this.bookId,
+      this.type,
+      this.title,
+      this.subject,
+      this.questions});
 
-  factory QuizDataBean.fromJson(Map<String, dynamic> json) => _$QuizDataBeanFromJson(json);
+  factory QuizDataBean.fromJson(Map<String, dynamic> json) =>
+      _$QuizDataBeanFromJson(json);
 
   Map<String, dynamic> toJson() => _$QuizDataBeanToJson(this);
 }
@@ -47,16 +57,23 @@ class QuizDataBean {
 @JsonSerializable()
 class QuestionsBean {
   String? id;
-  String? page_id;
+  @JsonKey(name: "page_id")
+  String? pageId;
   String? text;
   List<String>? choices;
   String? answer;
   String? image;
 
-  QuestionsBean({this.id, this.page_id, this.text, this.choices, this.answer, this.image});
+  QuestionsBean(
+      {this.id,
+      this.pageId,
+      this.text,
+      this.choices,
+      this.answer,
+      this.image});
 
-  factory QuestionsBean.fromJson(Map<String, dynamic> json) => _$QuestionsBeanFromJson(json);
+  factory QuestionsBean.fromJson(Map<String, dynamic> json) =>
+      _$QuestionsBeanFromJson(json);
 
   Map<String, dynamic> toJson() => _$QuestionsBeanToJson(this);
 }
-

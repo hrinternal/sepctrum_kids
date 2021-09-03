@@ -21,9 +21,11 @@ class BookDataBean {
   String? author;
   String? description;
   String? publisher;
-  String? date_published;
+  @JsonKey(name:"date_published")
+  String? datePublished;
   String? subject;
-  String? front_cover;
+  @JsonKey(name:"front_cover")
+  String? frontCover;
 
   BookDataBean(
       {this.id,
@@ -32,9 +34,9 @@ class BookDataBean {
       this.author,
       this.description,
       this.publisher,
-      this.date_published,
+      this.datePublished,
       this.subject,
-      this.front_cover});
+      this.frontCover});
 
   factory BookDataBean.fromJson(Map<String, dynamic> json) =>
       _$BookDataBeanFromJson(json);
