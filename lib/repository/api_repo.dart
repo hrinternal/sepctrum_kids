@@ -30,7 +30,7 @@ class ApiRepo {
       client.registerUser(appKey, authorization, userId, firstName, lastName,
           phone, accessCode);
 
-  Future<Book> getBooks(
+  Future<Book>? getBooks(
     String appKey,
     String authorization,
   ) =>

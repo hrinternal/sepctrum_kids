@@ -7,16 +7,16 @@ class BooksController extends GetxController {
   var books = Book().obs;
 
   BooksController(String userId) {
-    getNotifications(userId);
+    getBooks(userId);
   }
 
-  getNotifications(String userId) async {
+  getBooks(String userId) async {
     var list = await ApiRepo().getBooks();
     if (list != null) {
       books.value = list;
       update();
     } else {
-      books.value = NotificationResponse(response: ResponseBean(status:0,message: "",data: []));
+      books.value = Book(data:[]);
     }
   }
 }
